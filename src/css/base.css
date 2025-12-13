@@ -1,5 +1,5 @@
 :root {
-  font-family: "IBM Plex Sans", "Open Sans", sans-serif;
+  font-family: "IBM Plex Sans",  sans-serif;
   font-size: 16px;
   line-height: 1.5;
   font-weight: 400;
@@ -10,11 +10,18 @@
 
 body {
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
   flex-direction: column;
   gap: 0px;
-  min-width: 100vw;
+  width: 100%;
   min-height: 100vh;
   margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Open Sans", sans-serif;;
 }
