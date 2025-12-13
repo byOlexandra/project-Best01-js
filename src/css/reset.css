@@ -27,6 +27,13 @@ button {
   cursor: pointer;
 }
 
+button,
+input,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+}
+
 img {
   display: block;
   max-width: 100%;
