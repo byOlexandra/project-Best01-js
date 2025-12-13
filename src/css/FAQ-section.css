@@ -1,0 +1,49 @@
+.accordion-container .ac .ac-trigger {
+    font-family: "IBM Plex Sans", sans-serif;   
+}
+
+.accordion-container .ac .ac-panel .ac-text {
+    font-family: "IBM Plex Sans", sans-serif;
+}
+
+.FAQ-section {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin: 64px 0;
+}
+
+/* Заголовок */
+
+.FAQ-main-title {
+    text-align: center;
+}
+
+.accordion-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Налаштовую кнопку закриття */
+
+
+.ac-trigger {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background: transparent;
+}
+
+.accordion-container .ac .ac-header .ac-trigger::after {
+    content: none;
+}
+
+.ac.is-active .ac-icon {
+    transform: rotate(45deg);
+}
+
+.ac-icon {
+    flex-shrink: 0;
+}
