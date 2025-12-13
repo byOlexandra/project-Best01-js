@@ -100,6 +100,13 @@
     display: inline;
 }
 
+/* Styles for Tablet devices */
+@media only screen and (min-width: 768px) {
+    .FAQ-section {
+        gap: 80px;
+    }
+}
+
 /* Styles for Desktop devices */
 @media only screen and (min-width: 1440px) {
     .FAQ-main-title {
