@@ -47,12 +47,36 @@
     position: absolute;
     top: 12px;
     right: 12px;
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
     padding: 0;
     border: none;
     background: transparent;
     line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.order-modal-close-icon {
+    stroke: #02060a;
+    stroke-width: 1px;
+    fill: #fff;
+    transition: stroke 200ms ease;
+}
+
+.order-modal-close:hover .order-modal-close-icon,
+.order-modal-close:focus .order-modal-close-icon {
+    stroke: #88765c;
+}
+
+.order-modal-close:active .order-modal-close-icon {
+    opacity: 0.7;
+}
+
+.order-modal-close:focus {
+    outline: none;
 }
 
 .order-modal-title {
@@ -94,6 +118,7 @@
     border-radius: 12px;
     padding: 8px 12px;
     color: #02060a;
+    transition: background-color 200ms ease, border-color 200ms ease, opacity 200ms ease;
 }
 
 .order-modal-input {
@@ -145,7 +170,6 @@
 .order-modal-input:focus,
 .order-modal-textarea:focus {
     outline: none;
-    border-color: rgba(2, 6, 10, 0.2);
 }
 
 .order-modal-submit {
@@ -172,12 +196,55 @@
 
 .order-modal-submit:active {
     background: #eee9e3;
-    box-shadow: inset 0 4px 6px -2px rgba(0, 0, 0, 0.2); 
+    box-shadow: inset 0 4px 6px -2px rgba(0, 0, 0, 0.2);
 }
 
 .order-modal-submit:disabled {
     background: #88765c;
     opacity: 0.3;
     cursor: not-allowed;
-    box-shadow: none; 
+    box-shadow: none;
+}
+
+@media only screen and (min-width: 768px) {
+    .order-modal-backdrop {
+        padding: 24px;
+    }
+
+    .order-modal-form-container {
+        max-width: 704px;
+        padding: 64px 32px;
+    }
+
+    .order-modal-input,
+    .order-modal-textarea {
+        max-width: 640px;
+    }
+
+    .order-modal-submit {
+        max-width: 240px;
+        height: 45px;
+        margin: 0 auto;
+    }
+}
+
+@media only screen and (min-width: 1440px) {
+    .order-modal-backdrop {
+        padding: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow-y: hidden;
+}
+
+    .order-modal-form-container {
+        display: block;
+        width: auto;
+        padding: 64px;
+    }
+
+
+    .order-modal-title {
+        font-size: 48px;
+    }
 }
