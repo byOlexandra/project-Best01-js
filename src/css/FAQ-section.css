@@ -1,9 +1,20 @@
+.FAQ-section ul {
+    list-style-type: disc;
+    list-style-position: inside;
+}
+
+.FAQ-section ol {
+    list-style-type: decimal;
+    list-style-position: inside;
+}
+
 .accordion-container .ac .ac-trigger {
     font-family: "IBM Plex Sans", sans-serif;   
 }
 
 .accordion-container .ac .ac-panel .ac-text {
     font-family: "IBM Plex Sans", sans-serif;
+    font-size: 14px;
 }
 
 .FAQ-section {
@@ -25,25 +36,18 @@
     gap: 16px;
 }
 
-/* Налаштовую кнопку закриття */
-
+.ac {
+    padding: 20px 24px;
+}
 
 .ac-trigger {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    background: transparent;
 }
 
-.accordion-container .ac .ac-header .ac-trigger::after {
-    content: none;
-}
-
-.ac.is-active .ac-icon {
-    transform: rotate(45deg);
-}
-
-.ac-icon {
-    flex-shrink: 0;
+.ac-panel {
+    font-size: 14px;
 }
