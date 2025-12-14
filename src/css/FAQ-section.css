@@ -1,18 +1,21 @@
 .FAQ-section ul {
     list-style-type: disc;
-    list-style-position: inside;
+    list-style-position: outside;
+    padding-left: 25px;
 }
 
 .FAQ-section ol {
     list-style-type: decimal;
-    list-style-position: inside;
+    list-style-position: outside;
+    padding-left: 25px;
 }
 
-.accordion-container .ac .ac-trigger {
+
+#faq-section .ac-trigger {
     font-family: "IBM Plex Sans", sans-serif;   
 }
 
-.accordion-container .ac .ac-panel .ac-text {
+#faq-section .ac-text {
     font-family: "IBM Plex Sans", sans-serif;
     font-size: 14px;
 }
@@ -36,8 +39,11 @@
     gap: 16px;
 }
 
-.ac {
+#faq-section .ac {
     padding: 20px 24px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(238, 233, 227, 1);
 }
 
 .ac-trigger {
@@ -48,6 +54,26 @@
     width: 100%;
 }
 
+.ac-list li+li {
+    margin-top: 5px;
+}
+
 .ac-panel {
     font-size: 14px;
+}
+
+/* Styles for Desktop devices */
+@media only screen and (min-width: 1440px) {
+    .FAQ-main-title {
+        font-size: 48px;
+    }
+
+    #faq-section .ac-trigger {
+        font-size: 18px;
+    }
+
+    #faq-section .ac-panel,
+    #faq-section .ac-text {
+    font-size: 16px;
+    }
 }
