@@ -10,7 +10,6 @@
     padding-left: 25px;
 }
 
-
 #faq-section .ac-trigger {
     font-family: "IBM Plex Sans", sans-serif;   
 }
@@ -33,6 +32,8 @@
     text-align: center;
 }
 
+/* Стилізую акордеон */
+
 .accordion-container {
     display: flex;
     flex-direction: column;
@@ -41,6 +42,7 @@
 
 #faq-section .ac {
     padding: 20px 24px;
+    border-radius: 8px;
     display: flex;
     flex-direction: column;
     background-color: rgba(238, 233, 227, 1);
@@ -52,6 +54,13 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    position: relative;
+}
+
+/* Обійшла дефолтне засвітлення тексту при фокусі */
+
+#faq-section .ac .ac-trigger:focus {
+    color: #02060a;
 }
 
 .ac-list li+li {
@@ -60,6 +69,48 @@
 
 .ac-panel {
     font-size: 14px;
+}
+
+/* Додаю іконки */
+
+#faq-section .ac .ac-trigger::after {
+    content: "";
+    text-align: center;
+    width: 15px;
+    transform: translate(0, -50%);
+    position: absolute;
+    right: 10px;
+    top: 50%;
+}
+
+#faq-section .ac-trigger svg {
+    list-style: none;
+    text-align: center;
+    width: 24px;
+    height: 24px;
+    transform: translate(0, -50%);
+    position: absolute;
+    right: 10px;
+    top: 50%;
+}
+
+.ac-trigger .icon-close {
+    display: none;
+}
+
+.ac.is-active .ac-trigger .icon-add {
+    display: none;
+}
+
+.ac.is-active .ac-trigger .icon-close {
+    display: inline;
+}
+
+/* Styles for Tablet devices */
+@media only screen and (min-width: 768px) {
+    .FAQ-section {
+        gap: 80px;
+    }
 }
 
 /* Styles for Desktop devices */

@@ -8,6 +8,10 @@
   background-color: #f6f4f1;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   display: flex;
   flex-direction: column;
