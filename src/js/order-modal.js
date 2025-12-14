@@ -224,5 +224,5 @@ async function onSubmit(e) {
     }
 }
 
-export { openModal, closeModal };
+export { openModal };
 
