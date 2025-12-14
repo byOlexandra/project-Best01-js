@@ -1,6 +1,6 @@
 .footer {
     background-color: #c3b49d;
-    padding: 48px 20px;
+    padding: 48px 0;
 }
 
 .footer-container {
@@ -10,14 +10,14 @@
     gap: 32px;
     text-align: center;
     margin-bottom: 80px;
+
 }
 
 .footer-logo {
     display: flex;
     align-items: center;
-    color: #332C22;
+    fill: #332C22;
 }
-
 
 .footer-nav-list {
     display: flex;
@@ -50,6 +50,10 @@
     gap: 24px;
 }
 
+.footer-social-icon {
+    transition: fill 0.2s ease;
+}
+
 .footer-social-icon:hover,
 .footer-social-icon:focus {
     fill: #88765C;
@@ -58,6 +62,8 @@
 .footer-divider {
     border: 1px solid rgba(2, 6, 10, 0.15);
     margin-bottom: 32px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .footer-copyright {
@@ -74,6 +80,11 @@
 
     .footer {
         padding: 48px 32px;
+    }
+
+    .footer-divider {
+        margin-left: 0;
+        margin-right: 0;
     }
 }
 
