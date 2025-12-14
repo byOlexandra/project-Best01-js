@@ -35,9 +35,9 @@ function initializeFeedbacksAndRaty(data) {
                 half: true,
                 size: 20,
 
-                starHalf: 'https://cdnjs.cloudflare.com/ajax/libs/raty-js/2.9.0/images/star-half.png',
-                starOff: 'https://cdnjs.cloudflare.com/ajax/libs/raty-js/2.9.0/images/star-off.png',
-                starOn: 'https://cdnjs.cloudflare.com/ajax/libs/raty-js/2.9.0/images/star-on.png',
+                starHalf: 'https://cdn.jsdelivr.net/npm/raty-js@2.9.0/lib/images/star-half.png',
+                starOff: 'https://cdn.jsdelivr.net/npm/raty-js@2.9.0/lib/images/star-off.png',
+                starOn: 'https://cdn.jsdelivr.net/npm/raty-js@2.9.0/lib/images/star-on.png',
             });
         }
     });
@@ -87,7 +87,8 @@ export async function initSuccessStories() {
         const feedbackData = apiResponse.feedbacks;
     
         initializeFeedbacksAndRaty(feedbackData);
-        initializeSwiper();
+       
+        
         }catch (error) {
             console.error("Error loading reviews:", error);
     }

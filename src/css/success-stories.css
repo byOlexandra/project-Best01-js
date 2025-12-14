@@ -32,6 +32,16 @@
     gap: 16px;
 }
 
+.feedbacks-slider,
+.swiper-container{
+    height: auto;
+    overflow: hidden;
+}
+
+.rating-container img{
+    display: inline-block;
+    margin-right: 4px;
+}
 
 .swiper-button-prev,
 .swiper-button-next {
