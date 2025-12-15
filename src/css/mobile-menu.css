@@ -30,6 +30,7 @@
 .mobile-menu-logo {
     display: flex;
     align-items: center;
+    fill: #332C22;
 }
 
 .navbar-button-close {
@@ -92,6 +93,7 @@
         width: 196px;
         margin-left: auto;
         margin-right: auto;
+        display: block;
     }
 }
 
