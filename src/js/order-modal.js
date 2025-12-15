@@ -5,6 +5,7 @@ const refs = {
     backdrop: document.querySelector("[data-modal-backdrop]"),
     closeBtn: document.querySelector("[data-modal-close]"),
     form: document.querySelector(".order-modal-form"),
+    loader: document.querySelector(".loader"),
 };
 
 const BASE_URL = "https://paw-hut.b.goit.study/api";
@@ -41,6 +42,7 @@ function closeModal() {
     window.removeEventListener("keydown", onEscClose);
     currentAnimalId = null;
     clearAllErrors();
+    hideLoader();
 }
 
 function onEscClose(e) {
@@ -160,6 +162,18 @@ function onFieldBlur(e) {
     }
 }
 
+function showLoader() {
+    if (refs.loader) {
+        refs.loader.classList.remove("hidden");
+    }
+}
+
+function hideLoader() {
+    if (refs.loader) {
+        refs.loader.classList.add("hidden");
+    }
+}
+
 async function onSubmit(e) {
     e.preventDefault();
 
@@ -190,6 +204,7 @@ async function onSubmit(e) {
 
     const submitBtn = refs.form.querySelector('button[type="submit"]');
     if (submitBtn) submitBtn.disabled = true;
+    showLoader();
 
     try {
         const res = await fetch(`${BASE_URL}/orders`, {
@@ -224,6 +239,7 @@ async function onSubmit(e) {
         text: err.message || "Перевір з’єднання та спробуй ще раз.",
         });
     } finally {
+        hideLoader();
         if (submitBtn) submitBtn.disabled = false;
     }
 }
