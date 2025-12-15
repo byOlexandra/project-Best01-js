@@ -1,4 +1,5 @@
-import Swiper, { Navigation, Pagination } from 'swiper';
+import Swiper from 'swiper'; 
+import { Navigation, Pagination } from 'swiper/modules';
 
 
 const API_URL = 'https://paw-hut.b.goit.study/api/feedbacks?limit=10&page=1';
@@ -87,7 +88,7 @@ export async function initSuccessStories() {
         const feedbackData = apiResponse.feedbacks;
     
         initializeFeedbacksAndRaty(feedbackData);
-       
+       initializeSwiper()
         
         }catch (error) {
             console.error("Error loading reviews:", error);

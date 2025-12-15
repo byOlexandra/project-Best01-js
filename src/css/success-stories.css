@@ -2,7 +2,7 @@
     padding: 64px 0;
 }
 
-.section-title{
+.feedbacks-title{
     font-weight: 700;
     font-size: 36px;
     line-height: 1.2;
@@ -12,7 +12,7 @@
     margin-bottom: 24px;
 }
 
-.section-subtitle{
+.feedbacks-subtitle{
     font-weight: 400;
     font-size: 16px;
     line-height: 1.5;
@@ -36,6 +36,13 @@
 .swiper-container{
     height: auto;
     overflow: hidden;
+    width: 335px;
+    height: 346px;
+    margin-top: 40px;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.5;
+    color: #02060a;
 }
 
 .rating-container img{
@@ -58,3 +65,6 @@
     position: static;
     margin: 0;
 }
+
+
+
