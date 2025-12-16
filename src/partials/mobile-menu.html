@@ -1,11 +1,16 @@
 <div class="mobile-menu" data-menu>
   <div class="navbar-header">
-    <a href="index.html" class="mobile-menu-logo">
+    <a href="#hero" class="mobile-menu-logo">
       <svg class="navbar-header-icons" width="160" height="69">
         <use href="/img/sprite.svg#icon-logo"></use>
       </svg>
     </a>
-    <button class="navbar-button-close">
+    <button
+      class="navbar-button-close"
+      type="button"
+      data-menu-close
+      aria-label="Close menu"
+    >
       <svg class="menu-icon" width="24" height="24">
         <use href="/img/sprite.svg#icon-close"></use>
       </svg>
@@ -16,7 +21,7 @@
       <li class="header-wrapper-items">
         <a href="#pets" class="header-wrapper-text">Знайди друга</a>
       </li>
-      <li class="header-wrapperr-items">
+      <li class="header-wrapper-items">
         <a href="#about" class="header-wrapper-text">Про нас</a>
       </li>
       <li class="header-wrapper-items">
@@ -26,6 +31,6 @@
         <a href="#stories" class="header-wrapper-text">Історії успіху</a>
       </li>
     </ul>
-    <button class="header-wrapper-btn">Взяти друга</button>
+    <a href="#pets" class="header-wrapper-btn">Взяти друга</a>
   </div>
 </div>
