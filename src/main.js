@@ -4,3 +4,6 @@ initAccordion();
 import { openModal, closeModal } from './js/order-modal.js';
 openModal();
 closeModal();
+
+import { initMobileMenu } from './mobile-menu.js';
+initMobileMenu();
