@@ -57,6 +57,12 @@
     position: relative;
 }
 
+/* Обійшла дефолтне засвітлення тексту при фокусі */
+
+#faq-section .ac .ac-trigger:focus {
+    color: #02060a;
+}
+
 .ac-list li+li {
     margin-top: 5px;
 }

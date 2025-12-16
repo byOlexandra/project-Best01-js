@@ -4,7 +4,7 @@ import "accordion-js/dist/accordion.min.css";
 export function initAccordion() {
     document.addEventListener("DOMContentLoaded", () => {
         new Accordion(".accordion-container", {
-        duration: 300,
+        duration: 800,
         showMultiple: false
         });
     });
