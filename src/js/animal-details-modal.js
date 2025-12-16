@@ -202,7 +202,8 @@ const refs = {
   refs.closeBtn.addEventListener("click", closeAnimalModal);
   
   refs.takeHomeBtn.addEventListener("click", () => {
-    const animalId = refs.takeHomeBtn.dataset.animalId;
+      const animalId = refs.takeHomeBtn.dataset.animalId;
+      
   
     closeAnimalModal();
   
