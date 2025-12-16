@@ -2,6 +2,7 @@ import Swiper from 'swiper';
 import { Navigation, Pagination } from 'swiper/modules';
 
 
+
 const API_URL = 'https://paw-hut.b.goit.study/api/feedbacks?limit=10&page=1';
 
 function createFeedbackCard(feedback) {
