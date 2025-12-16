@@ -1,6 +1,17 @@
+
+import $ from 'jquery';
+import 'raty-js';
+window.jQuery = $;
+window.$ = $;
+export function initStarRating() {
+    $('.star-rating').raty({
+        path: '/icons',
+        starOn: 'star-on.svg',
+        starOff: 'star-off.svg'
+    });
+} 
 import Swiper from 'swiper'; 
 import { Navigation, Pagination } from 'swiper/modules';
-
 
 
 const API_URL = 'https://paw-hut.b.goit.study/api/feedbacks?limit=10&page=1';
@@ -32,15 +43,14 @@ function initializeFeedbacksAndRaty(data) {
 
         if (ratingElement.length) {
             ratingElement.raty({
-                score: feedback.rate, 
+                score: feedback.rate,
                 readOnly: true,
                 half: true,
-                size: 20,
 
-                starHalf: 'https://cdn.jsdelivr.net/npm/raty-js@2.9.0/lib/images/star-half.png',
-                starOff: 'https://cdn.jsdelivr.net/npm/raty-js@2.9.0/lib/images/star-off.png',
-                starOn: 'https://cdn.jsdelivr.net/npm/raty-js@2.9.0/lib/images/star-on.png',
-            });
+                starHalf: 'https://cdnjs.cloudflare.com/ajax/libs/raty/2.9.0/images/star-half.png',
+                starOff: 'https://cdnjs.cloudflare.com/ajax/libs/raty/2.9.0/images/star-off.png',
+                starOn: 'https://cdnjs.cloudflare.com/ajax/libs/raty/2.9.0/images/star-on.png',
+});
         }
     });
 }
@@ -95,5 +105,3 @@ export async function initSuccessStories() {
             console.error("Error loading reviews:", error);
     }
 }
-
-initSuccessStories();
