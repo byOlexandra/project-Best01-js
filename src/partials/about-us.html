@@ -1,25 +1,35 @@
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Чому Хатинка Лапок</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-
-<section class="why">
+<section id="stories" class="why">
   <h2 class="why-title">Чому Хатинка Лапок</h2>
 
   <div class="why-slider">
-
-    <button class="why-prev" aria-label="Prev">‹</button>
+    <button class="why-prev" aria-label="Попередній">‹</button>
 
     <div class="why-slides">
 
+      <!-- Слайд 1 -->
       <div class="why-slide">
-        <img src="img/slide1.jpg" alt="">
-        <div class="why-overlay"></div>
+        <div class="why-image">
+          <picture>
+            <source
+              media="(min-width: 1024px)"
+              srcset="img/about-us/about-us-slide01-desktop.jpg, img/about-us/about-us-slide01-desktop@2x-min.jpg 2x"
+            />
+            <source
+              media="(min-width: 768px)"
+              srcset="img/about-us/slide1-tablet.jpg, img/about-us/about-us-slide01-mobile@2x-min.jpg 2x"
+            />
+            <source
+              media="(max-width: 767px)"
+              srcset="img/about-us/about-us-slide01-mobile.jpg, img/about-us/slide1-mobile@2x-min.jpg 2x"
+            />
+            <img
+              src="img/about-us/about-us-slide01-mobile.jpg"
+              alt="Порятунок собаки 2015 року"
+              loading="lazy"
+            />
+          </picture>
+          <div class="why-overlay"></div>
+        </div>
         <div class="why-text">
           Все почалося у 2015 році з кількох небайдужих людей та одного
           врятованого собаки. Сьогодні ми — один з найбільших притулків у регіоні,
@@ -27,43 +37,85 @@
         </div>
       </div>
 
+      <!-- Слайд 2 -->
       <div class="why-slide">
-        <img src="img/slide2.jpg" alt="">
-        <div class="why-overlay"></div>
+        <div class="why-image">
+          <picture>
+            <source media="(min-width: 1024px)" srcset="img/about-us-slide02-desktop.jpg, img/about-us/about-us-slide02-desktop@2x-min.jpg 2x" />
+            <source media="(min-width: 768px)" srcset="img/about-us-slide02-tablet.jpg, img/about-us/about-us-slide02-tablet@2x-min.jpg 2x" />
+            <source media="(max-width: 767px)" srcset="img/about-us/about-us-slide02-mobile.jpg, img/about-us/about-us-slide02-mobile@2x-min.jpg 2x" />
+            <img src="img/about-us/about-us-slide02-mobile.jpg" alt="Процес реабілітації тварин" loading="lazy" />
+          </picture>
+          <div class="why-overlay"></div>
+        </div>
         <div class="why-text">
-        Ми рятуємо, реабілітуємо та знаходимо люблячі родини для безпритульних тварин. Наша мета — не просто дати прихисток, а й забезпечити кожному "хвостику" щасливе та повноцінне життя в новій родині.        </div>
-      </div>
-
-      <div class="why-slide">
-        <img src="img/slide3.jpg" alt="">
-        <div class="why-overlay"></div>
-        <div class="why-text">
-        "Хатинка Лапок" — це команда професійних ветеринарів, кінологів та десятків волонтерів, які щодня вкладають свою душу та час у турботу про наших підопічних. Ми працюємо 24/7, бо їхнє життя залежить від нас.        </div>
-      </div>
-
-      <div class="why-slide">
-        <img src="img/slide4.jpg" alt="">
-        <div class="why-overlay"></div>
-        <div class="why-text">
-          Ми створили безпечний та комфортний простір. Кожна тварина отримує якісне харчування, своєчасну ветеринарну допомогу, проходить соціалізацію та гуляє на спеціально обладнаних майданчиках.
+          Ми рятуємо, реабілітуємо та знаходимо люблячі родини для 
+          безпритульних тварин. Наша мета — не просто дати прихисток,
+          а й забезпечити кожному "хвостику" щасливе та повноцінне
+          життя в новій родині.
         </div>
       </div>
 
+      <!-- Слайд 3 -->
       <div class="why-slide">
-        <img src="img/slide5.jpg" alt="">
-        <div class="why-overlay"></div>
+        <div class="why-image">
+          <picture>
+            <source media="(min-width: 1024px)" srcset="img/about-us/about-us-slide03-desktop copy.jpg, img/about-us/about-us-slide03-desktop@2x-min.jpg 2x" />
+            <source media="(min-width: 768px)" srcset="img/about-us/about-us-slide03-tablet.jpg, img/about-us/about-us-slide03-tablet@2x-min.jpg 2x" />
+            <source media="(max-width: 767px)" srcset="img/about-us/about-us-slide03-mobile.jpg, img/about-us/about-us-slide03-mobile@2x-min.jpg 2x" />
+            <img src="img/about-us/about-us-slide03-mobile.jpg" alt="Команда волонтерів та ветеринарів" loading="lazy" />
+          </picture>
+          <div class="why-overlay"></div>
+        </div>
         <div class="why-text">
-          Ваша допомога — безцінна. Ви можете взяти тваринку додому, стати волонтером, допомогти фінансово або інформаційно. Кожен маленький внесок наближає нас до великої мети — світу без безпритульних тварин.
+          "Хатинка Лапок" — це команда професійних ветеринарів,
+          кінологів та десятків волонтерів, які щодня вкладають свою
+          душу та час у турботу про наших підопічних. Ми працюємо 24/7,
+          бо їхнє життя залежить від нас.
+        </div>
+      </div>
+
+      <!-- Слайд 4 -->
+      <div class="why-slide">
+        <div class="why-image">
+          <picture>
+            <source media="(min-width: 1024px)" srcset="img/about-us/about-us-slide04-desktop.jpg, img/about-us/about-us-slide04-desktop@2x-min.jpg 2x" />
+            <source media="(min-width: 768px)" srcset="img/about-us/about-us-slide04-tablet.jpg, img/about-us/about-us-slide04-tablet@2x-min.jpg 2x" />
+            <source media="(max-width: 767px)" srcset="img/about-us/about-us-slide04-mobile.jpg, img/about-us/about-us-slide04-mobile@2x-min.jpg 2x" />
+            <img src="img/about-us/about-us-slide04-mobile.jpg" alt="Комфортні умови для тварин" loading="lazy" />
+          </picture>
+          <div class="why-overlay"></div>
+        </div>
+        <div class="why-text">
+          Ми створили безпечний та комфортний простір. Кожна тварина
+          отримує якісне харчування, своєчасну ветеринарну допомогу,
+          проходить соціалізацію та гуляє на спеціально обладнаних
+          майданчиках.
+        </div>
+      </div>
+
+      <!-- Слайд 5 -->
+      <div class="why-slide">
+        <div class="why-image">
+          <picture>
+            <source media="(min-width: 1024px)" srcset="img/about-us/about-us-slide05-desktop.jpg, img/about-us/about-us-slide05-desktop@2x-min.jpg 2x" />
+            <source media="(min-width: 768px)" srcset="img/about-us/about-us-slide05-tablet.jpg, img/about-us/about-us-slide05-tablet@2x-min.jpg 2x" />
+            <source media="(max-width: 767px)" srcset="img/about-us/about-us-slide05-mobile.jpg, img/about-us/about-us-slide05-mobile@2x-min.jpg 2x" />
+            <img src="img/about-us/about-us-slide05-mobile.jpg" alt="Підтримка від людей" loading="lazy" />
+          </picture>
+          <div class="why-overlay"></div>
+        </div>
+        <div class="why-text">
+          Ваша допомога — безцінна. Ви можете взяти тваринку додому,
+          стати волонтером, допомогти фінансово або інформаційно.
+          Кожен маленький внесок наближає нас до великої мети — світу
+          без безпритульних тварин.
         </div>
       </div>
     </div>
 
-    <button class="why-next" aria-label="Next">›</button>
+    <button class="why-next" aria-label="Наступний">›</button>
   </div>
 
   <div class="why-dots"></div>
 </section>
-
-<script src="js/why-slider.js"></script>
-</body>
-</html>
