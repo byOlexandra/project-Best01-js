@@ -1,3 +1,5 @@
+/* Styles for Mobile devises */
+
 .pets-list-section {
     text-align: center;
 }
@@ -9,6 +11,8 @@
     letter-spacing: -0.01em;
 }
 
+/* Styles for Desktop devises */
+
 @media screen and (min-width: 1440px) {
     .pets-list-section h1 {
         margin-top: 80px;
@@ -16,9 +20,13 @@
     }
 }
 
+/* Styles for Mobile devises */
+
 .pets-list-section p {
     margin-top: 16px;
 }
+
+/* Styles for Desktop devises */
 
 @media screen and (min-width: 1440px) {
     .pets-list-section p {
@@ -26,20 +34,34 @@
     }
 }
 
+/* Styles for Mobile devises */
+
 .filter-pet-list {
     margin-top: 32px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap: 32px;
+    gap: 0;
 }
+
+/* Styles for Desktop devises */
+
+@media screen and (min-width: 1440px) {
+    .filter-pet-list {
+        gap: 32px;
+    }
+}
+
+/* Styles for Desktop devises */
 
 @media screen and (min-width: 1440px) {
     .filter-pet-list {
         margin-top: 40px;
     }
 }
+
+/* Styles for Mobile devises */
 
 .filter-pet-list-button {
     border-radius: 100px;
@@ -51,11 +73,15 @@
     transition: background-color 0.2s ease;
 }
 
+/* Styles for Desktop devises */
+
 @media screen and (min-width: 1440px) {
     .filter-pet-list-button {
         font-size: 16px;
     }
 }
+
+/* Styles for Mobile devises */
 
 .filter-pet-list-button:hover {
     font-weight: 500;
@@ -66,11 +92,15 @@
     margin-top: 32px;
 }
 
+/* Styles for Desktop devises */
+
 @media screen and (min-width: 1440px) {
     .pets-list {
         margin-top: 40px;
     }
 }
+
+/* Styles for Mobile devises */
 
 .add-more-pets {
     margin-top: 40px;
@@ -81,6 +111,15 @@
     padding: 12px 24px;
     background-color: #88765C;
     color: #FFFFFF;
+}
+
+/* Styles for Desktop devises */
+
+@media screen and (min-width: 1440px) {
+    .add-more-pets {
+        width: 192px;
+        height: 48px;
+    }
 }
 
 .add-more-pets:hover {
