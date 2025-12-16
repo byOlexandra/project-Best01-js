@@ -1,4 +1,4 @@
-export function initAboutUsSlider() {
+export function initWhySlider() {
   const slides = document.querySelectorAll('.why-slide');
   const container = document.querySelector('.why-slides');
   const prev = document.querySelector('.why-prev');
@@ -23,7 +23,7 @@ export function initAboutUsSlider() {
 
   function update() {
     container.style.transform = `translateX(-${index * 100}%)`;
-    dots.forEach(dot => dot.classList.remove('active'));
+    dots.forEach(d => d.classList.remove('active'));
     dots[index].classList.add('active');
   }
 
