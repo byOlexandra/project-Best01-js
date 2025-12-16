@@ -94,10 +94,32 @@
         margin-left: auto;
         margin-right: auto;
         display: block;
+        transition:
+            background-color 0.2s ease,
+            color 0.2s ease,
+            border-color 0.2s ease;
+    }
+
+    .header-wrapper-list a {
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+        transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .header-wrapper-list a:hover,
+    .header-wrapper-list a:focus {
+        border-bottom-color: #443B2E;
+    }
+
+    .header-wrapper-btn:hover,
+    .header-wrapper-btn:focus {
+        background-color: #EEE9E3;
+        color: #02060A;
+        border-color: #88765C;
     }
 }
 
-@media screen and (min-width: 1280px) {
+@media only screen and (min-width: 1440px) {
     .mobile-menu {
         display: none;
     }
