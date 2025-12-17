@@ -1,0 +1,130 @@
+.FAQ-section ul {
+    list-style-type: disc;
+    list-style-position: outside;
+    padding-left: 25px;
+}
+
+.FAQ-section ol {
+    list-style-type: decimal;
+    list-style-position: outside;
+    padding-left: 25px;
+}
+
+#faq-section .ac-trigger {
+    font-family: "IBM Plex Sans", sans-serif;   
+}
+
+#faq-section .ac-text {
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 14px;
+}
+
+.FAQ-section {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin: 64px 0;
+}
+
+/* Заголовок */
+
+.FAQ-main-title {
+    text-align: center;
+}
+
+/* Стилізую акордеон */
+
+.accordion-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+#faq-section .ac {
+    padding: 20px 24px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(238, 233, 227, 1);
+}
+
+.ac-trigger {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    position: relative;
+}
+
+/* Обійшла дефолтне засвітлення тексту при фокусі */
+
+#faq-section .ac .ac-trigger:focus {
+    color: #02060a;
+}
+
+.ac-list li+li {
+    margin-top: 5px;
+}
+
+.ac-panel {
+    font-size: 14px;
+}
+
+/* Додаю іконки */
+
+#faq-section .ac .ac-trigger::after {
+    content: "";
+    text-align: center;
+    width: 15px;
+    transform: translate(0, -50%);
+    position: absolute;
+    right: 10px;
+    top: 50%;
+}
+
+#faq-section .ac-trigger svg {
+    list-style: none;
+    text-align: center;
+    width: 24px;
+    height: 24px;
+    transform: translate(0, -50%);
+    position: absolute;
+    right: 10px;
+    top: 50%;
+}
+
+.ac-trigger .icon-close {
+    display: none;
+}
+
+.ac.is-active .ac-trigger .icon-add {
+    display: none;
+}
+
+.ac.is-active .ac-trigger .icon-close {
+    display: inline;
+}
+
+/* Styles for Tablet devices */
+@media only screen and (min-width: 768px) {
+    .FAQ-section {
+        gap: 80px;
+    }
+}
+
+/* Styles for Desktop devices */
+@media only screen and (min-width: 1440px) {
+    .FAQ-main-title {
+        font-size: 48px;
+    }
+
+    #faq-section .ac-trigger {
+        font-size: 18px;
+    }
+
+    #faq-section .ac-panel,
+    #faq-section .ac-text {
+    font-size: 16px;
+    }
+}

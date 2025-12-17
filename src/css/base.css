@@ -8,6 +8,10 @@
   background-color: #f6f4f1;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -25,4 +29,8 @@ h5,
 h6 {
   font-family: "Open Sans", sans-serif;
   font-weight: 700;
+}
+
+.hidden {
+  display: none;
 }

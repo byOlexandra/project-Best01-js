@@ -1,12 +1,11 @@
-import Swiper from 'swiper';
-import 'swiper/css';
-import { Navigation, Pagination } from 'swiper/modules';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
+import { initAccordion } from './js/FAQ-section.js';
+initAccordion();
 
-import Accordion from "accordion-js";
-import "accordion-js/dist/accordion.min.css";
+import { openModal, closeModal } from './js/order-modal.js';
+openModal();
+closeModal();
 
-import  raty  from 'raty-js';
-
-import Swal from 'sweetalert2';
+import { initMobileMenu } from './js/mobile-menu.js';
+initMobileMenu();
+import { initSwiper } from './js/about-us.js';
+initSwiper();
