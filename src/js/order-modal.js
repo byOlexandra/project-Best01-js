@@ -65,7 +65,6 @@ function ensureErrorEl(field) {
         errorEl.style.fontSize = "12px";
         errorEl.style.lineHeight = "1.3";
         errorEl.style.color = "#e74c3c";
-
         wrapper.appendChild(errorEl);
     }
 
@@ -97,7 +96,6 @@ function clearAllErrors() {
 
 function validateField(field) {
     if (!field) return true;
-
     clearError(field);
 
     if (field.id === "user-comment") {
@@ -126,7 +124,6 @@ function validateField(field) {
     setError(field, "Перевірте введені дані.");
     return false;
     }
-
     return true;
 }
 
@@ -134,7 +131,6 @@ function validateForm() {
     const nameField = refs.form.querySelector("#user-name");
     const phoneField = refs.form.querySelector("#user-phone");
     const commentField = refs.form.querySelector("#user-comment");
-
     const a = validateField(nameField);
     const b = validateField(phoneField);
     const c = validateField(commentField);
@@ -194,7 +190,6 @@ async function onSubmit(e) {
     }
 
     const fd = new FormData(refs.form);
-
     const payload = {
         name: fd.get("user-name").trim(),
         phone: fd.get("user-phone").trim(),
