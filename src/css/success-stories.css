@@ -1,0 +1,233 @@
+.feedbacks-section{
+    padding: 64px 0;
+}
+
+.feedbacks-section .swiper-pagination{
+    position: relative;
+    margin-top: 32px;
+    display: flex;
+    justify-content: flex-start;
+    bottom: 0 !important;
+}
+
+.feedbacks-section .swiper-pagination-bullet {
+    width: 12px;
+    height: 12px;
+    background-color:#02060a;
+    opacity: 0.2;
+    margin: 0 4px !important;
+    transition: opacity 0.3s;
+    border-radius: 100%;
+}
+
+.feedbacks-section .swiper-pagination-bullet-active {
+    opacity: 1;
+}
+
+.feedbacks-title{
+    margin-bottom: 24px;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    text-align: center;
+    margin: 0 auto 24px auto;
+    width: 100%;
+    color: #02060a;
+}
+
+.feedback-author{
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #02060a;
+}
+
+.feedbacks-subtitle{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: center;
+    color: #02060a;
+}
+
+.feedbacks-slider {
+    overflow: hidden !important;
+    width: 100%;
+    position: relative;
+    display: block;
+}
+
+#stories .feedbacks-slider,
+#stories .swiper {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    margin-top: 40px;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.5;
+    color: #02060a;
+}
+
+.rating-container{
+    margin-bottom: 32px;
+}
+
+.rating-container .gl-star-rating--stars {
+    display: flex;
+    gap: 4px;
+}
+
+.rating-container .gl-star-rating--stars>span svg {
+    fill: #02060a;
+    transition: fill 0.3s;
+    width: 20px;
+    height: 19px;
+}
+
+.rating-container .gl-star-rating--stars>span svg{
+    fill: none;
+    stroke: #02060a;
+    stroke-width: 2px;
+}
+
+.rating-container .gl-star-rating--stars>span.gl-active svg,
+.rating-container .gl-star-rating--stars>span.gl-selected svg {
+    fill: #02060a;
+    stroke: none;
+}
+
+.rating-container .gl-star-rating--stars > span {
+    opacity: 1 !important;
+}
+
+
+.rating-container .gl-star-rating--stars>span.gl-active,
+.rating-container .gl-star-rating--stars>span.gl-selected {
+    opacity: 1;
+}
+
+.feedback-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+    display: none;
+}
+
+.slider-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 32px;
+}
+
+.swiper-slide{
+    flex-shrink: 0;
+    width: 100%;
+    height: auto;
+}
+
+.swiper-wrapper {
+    display: flex !important;
+}
+
+#stories .slider-navigation{
+    display: flex;
+    gap: 16px;
+}
+
+#stories .swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+    background-color: #02060a;
+    opacity: 0.2;
+}
+
+#stories .swiper-pagination-bullet-active {
+    opacity: 1;
+}
+
+#stories .swiper-button-prev,
+#stories .swiper-button-next {
+    position: static;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+    margin: 0;
+    padding: 12px;
+    background-color: var(--button-bg-color);
+    border: 1px solid #c3b49d;
+    cursor: pointer;
+    transition: background-color 0.3s, opacity 0.3s;
+    border-radius: 8px;
+    background-color: #eee9e3;
+}
+
+#stories .swiper-button-prev svg,
+#stories .swiper-button-next svg {
+    fill: #02060a;
+    stroke: #02060a;
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+}
+
+#stories .swiper-button-prev:hover,
+#stories .swiper-button-next:hover{
+    border: 1px solid rgba(2, 6, 10, 0.6);
+}
+
+#stories .swiper-button-prev:hover svg,
+#stories .swiper-button-next:hover svg {
+    transform: scale(1.1);
+}
+
+#stories .swiper-button-prev:active,
+#stories .swiper-button-next:active{
+    box-shadow: inset 0 4px 6px -2px rgba(0, 0, 0, 0.03), inset 0 12px 16px -4px rgba(0, 0, 0, 0.08);
+    background-color: #eee9e3;
+}
+
+#stories .swiper-button-prev:disabled,
+#stories .swiper-button-next:disabled{
+    background: #eee9e3;
+    opacity: 0.4;
+}
+
+#stories .swiper-button-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+@media screen and (min-width: 768px){
+    .feedbacks-section{
+    min-height: 693px;
+    }
+
+    .feedback-card{
+    padding: 32px;
+    min-height: 250px;
+    }
+}
+
+@media screen and (min-width: 1280px){
+    .feedbacks-container{
+    max-width: 1200px;
+    margin: 0 auto;
+    }
+    .feedbacks-title{
+    font-size: 48px;
+    font-weight: 700;
+    max-width: 500px;
+    }
+}
