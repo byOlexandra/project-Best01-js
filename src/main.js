@@ -4,6 +4,9 @@ import { openModal, closeModal } from './js/order-modal.js';
 import { initMobileMenu } from './js/mobile-menu.js';
 import { initSwiper } from './js/about-us.js';
 import { addCategories, getPets, renderPets } from './js/pets-list.js';
+import { initSuccessStories } from './js/success-stories.js';
+initSuccessStories();
+
 
 document.addEventListener('DOMContentLoaded', () => {
     openModal();
