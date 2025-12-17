@@ -1,29 +1,27 @@
 
-import $ from 'jquery';
-import 'raty-js';
-window.jQuery = $;
-window.$ = $;
-export function initStarRating() {
-    $('.star-rating').raty({
-        path: '/icons',
-        starOn: 'star-on.svg',
-        starOff: 'star-off.svg'
-    });
-} 
+import StarRating from 'star-rating.js';
 import Swiper from 'swiper'; 
 import { Navigation, Pagination } from 'swiper/modules';
 
+import 'star-rating.js/dist/star-rating.css';
 
 const API_URL = 'https://paw-hut.b.goit.study/api/feedbacks?limit=10&page=1';
 
 function createFeedbackCard(feedback) {
-    const ratingId = `rating-${feedback._id}`;
-    
     return `
         <div class="swiper-slide">
             <div class="feedback-card">
                 <div>
-                    <div id="${ratingId}" class="rating-container"></div>
+                    <div class="rating-container">
+                        <select class="star-rating-lib">
+                            <option value="">Select a rating</option>
+                            <option value="5" ${Math.round(feedback.rate) === 5 ? 'selected' : ''}>5</option>
+                            <option value="4" ${Math.round(feedback.rate) === 4 ? 'selected' : ''}>4</option>
+                            <option value="3" ${Math.round(feedback.rate) === 3 ? 'selected' : ''}>3</option>
+                            <option value="2" ${Math.round(feedback.rate) === 2 ? 'selected' : ''}>2</option>
+                            <option value="1" ${Math.round(feedback.rate) === 1 ? 'selected' : ''}>1</option>
+                        </select>
+                    </div>
                     <p class="feedback-text">${feedback.description}</p>
                 </div>
                 <p class="feedback-author">${feedback.author}</p>
@@ -32,55 +30,49 @@ function createFeedbackCard(feedback) {
     `;
 }
 
-function initializeFeedbacksAndRaty(data) {
+function initializeFeedbacksAndStars(data) {
     const wrapper = document.getElementById('feedbacks-wrapper');
-    if (!wrapper) return;
+    if (!wrapper || !data) return;
 
     wrapper.innerHTML = data.map(createFeedbackCard).join('');
 
-    data.forEach(feedback => {
-        const ratingElement = $(`#rating-${feedback._id}`);
-
-        if (ratingElement.length) {
-            ratingElement.raty({
-                score: feedback.rate,
-                readOnly: true,
-                half: true,
-
-                starHalf: 'https://cdnjs.cloudflare.com/ajax/libs/raty/2.9.0/images/star-half.png',
-                starOff: 'https://cdnjs.cloudflare.com/ajax/libs/raty/2.9.0/images/star-off.png',
-                starOn: 'https://cdnjs.cloudflare.com/ajax/libs/raty/2.9.0/images/star-on.png',
+    
+   setTimeout(() => {
+        new StarRating('.star-rating-lib', {
+            readOnly: true,
+            tooltip: false,
+            clearable: false,
+            stars: function (el, item, index) {
+        el.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+                <path d="M16 2.5l4.3 8.7 9.7 1.4-7 6.8 1.7 9.6-8.7-4.6-8.7 4.6 1.7-9.6-7-6.8 9.7-1.4z"/>
+            </svg>`;
+    },
+    
 });
-        }
-    });
+        initializeSwiper();
+    }, 0);
 }
 
 function initializeSwiper() {
     return new Swiper('.feedbacks-slider', {
         modules: [Navigation, Pagination], 
-        
         slidesPerView: 1,
         spaceBetween: 24,
         grabCursor: true, 
-        
         breakpoints: {
             320: { slidesPerView: 1, spaceBetween: 16 },
             768: { slidesPerView: 2, spaceBetween: 24 },
-            1025: { slidesPerView: 2, spaceBetween: 24 }
+            1280: { slidesPerView: 2, spaceBetween: 24 }
         },
-
         pagination: {
             el: '.swiper-pagination',
             clickable: true,
-            bulletClass: 'swiper-pagination-bullet', 
-            bulletActiveClass: 'swiper-pagination-bullet-active',
         },
-
         navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
         },
-        
         observer: true, 
         observeParents: true,
     });
@@ -92,16 +84,12 @@ export async function initSuccessStories() {
 
     try {
         const response = await fetch(API_URL);
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
         const apiResponse = await response.json();
         const feedbackData = apiResponse.feedbacks;
     
-        initializeFeedbacksAndRaty(feedbackData);
-       initializeSwiper()
+        initializeFeedbacksAndStars(feedbackData);
         
-        }catch (error) {
-            console.error("Error loading reviews:", error);
+    } catch (error) {
+        console.error("Error loading reviews:", error);
     }
 }
