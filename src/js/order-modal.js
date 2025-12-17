@@ -5,6 +5,7 @@ const refs = {
     backdrop: document.querySelector("[data-modal-backdrop]"),
     closeBtn: document.querySelector("[data-modal-close]"),
     form: document.querySelector(".order-modal-form"),
+    loader: document.querySelector(".loader"),
 };
 
 const BASE_URL = "https://paw-hut.b.goit.study/api";
@@ -41,6 +42,7 @@ function closeModal() {
     window.removeEventListener("keydown", onEscClose);
     currentAnimalId = null;
     clearAllErrors();
+    hideLoader();
 }
 
 function onEscClose(e) {
@@ -63,7 +65,6 @@ function ensureErrorEl(field) {
         errorEl.style.fontSize = "12px";
         errorEl.style.lineHeight = "1.3";
         errorEl.style.color = "#e74c3c";
-
         wrapper.appendChild(errorEl);
     }
 
@@ -95,7 +96,6 @@ function clearAllErrors() {
 
 function validateField(field) {
     if (!field) return true;
-
     clearError(field);
 
     if (field.id === "user-comment") {
@@ -124,7 +124,6 @@ function validateField(field) {
     setError(field, "Перевірте введені дані.");
     return false;
     }
-
     return true;
 }
 
@@ -132,7 +131,6 @@ function validateForm() {
     const nameField = refs.form.querySelector("#user-name");
     const phoneField = refs.form.querySelector("#user-phone");
     const commentField = refs.form.querySelector("#user-comment");
-
     const a = validateField(nameField);
     const b = validateField(phoneField);
     const c = validateField(commentField);
@@ -160,6 +158,18 @@ function onFieldBlur(e) {
     }
 }
 
+function showLoader() {
+    if (refs.loader) {
+        refs.loader.classList.remove("hidden");
+    }
+}
+
+function hideLoader() {
+    if (refs.loader) {
+        refs.loader.classList.add("hidden");
+    }
+}
+
 async function onSubmit(e) {
     e.preventDefault();
 
@@ -180,7 +190,6 @@ async function onSubmit(e) {
     }
 
     const fd = new FormData(refs.form);
-
     const payload = {
         name: fd.get("user-name").trim(),
         phone: fd.get("user-phone").trim(),
@@ -190,6 +199,7 @@ async function onSubmit(e) {
 
     const submitBtn = refs.form.querySelector('button[type="submit"]');
     if (submitBtn) submitBtn.disabled = true;
+    showLoader();
 
     try {
         const res = await fetch(`${BASE_URL}/orders`, {
@@ -224,6 +234,7 @@ async function onSubmit(e) {
         text: err.message || "Перевір з’єднання та спробуй ще раз.",
         });
     } finally {
+        hideLoader();
         if (submitBtn) submitBtn.disabled = false;
     }
 }
