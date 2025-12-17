@@ -228,27 +228,28 @@ body.scroll-locked {
     opacity: var(--btn-disabled-opacity);
 }
 
-/* Mobile adaptive 375 */
-@media (min-width: 375px) {
-    .modal {
-        max-width: 343px;
-        max-height: 680px;
-    }
 
-    .modal-content {
-        padding: 20px;
-        max-height: 680px;
-    }
-
-    .modal-img {
-        width: 295px;
-        height: 295px;
-    }
-
-    .modal-title {
-        font-size: 26px;
-    }
+.modal {
+    max-width: 343px;
+    max-height: 680px;
 }
+
+.modal-content {
+    padding: 20px;
+    max-height: 680px;
+
+    
+}
+
+.modal-img {
+    width: 295px;
+    height: 295px;
+}
+
+.modal-title {
+    font-size: 26px;
+}
+
 
 /* Tablet 768 */
 @media (min-width: 768px) {

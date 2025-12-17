@@ -1,5 +1,4 @@
-
-  import { currentPets } from './pets-list.js';
+import { currentPets } from './pets-list.js';
 const backdrop = document.querySelector('[data-animal-modal-backdrop]');
 const closeBtn = document.querySelector('[data-animal-modal-close]');
 const openFormBtn = backdrop.querySelector('[data-take-home]');
