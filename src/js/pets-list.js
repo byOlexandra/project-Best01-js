@@ -1,209 +1,131 @@
-const API_BASE = 'https://paw-hut.b.goit.study';
-
-async function fetchCategories() {
-  const res = await fetch(`${API_BASE}/api/categories`);
-  if (!res.ok) throw new Error('Categories error');
-  return res.json();
+import { openPetModal } from './animal-details-modal.js';
+const API_URL = 'https://paw-hut.b.goit.study/api';
+let currentCategory = '';
+let currentPage = 1;
+let perPage = window.innerWidth >= 1440 ? 9 : 8;
+const animalsContainer = document.querySelector('.pets-list');
+const categoriesList = document.querySelector('.filter-pet-list');
+const loadMoreBtn = document.querySelector('.add-more-pets');
+const loader = document.querySelector('.loader');
+window.addEventListener('resize', () => {
+  perPage = window.innerWidth >= 1440 ? 9 : 8;
+});
+function showLoader() {
+  if (loader) loader.classList.remove('hidden');
+  document
+    .querySelectorAll('.filter-pet-list-button')
+    .forEach(btn => (btn.disabled = true));
+  if (loadMoreBtn) loadMoreBtn.disabled = true;
 }
-
-async function fetchAnimals({ page, limit, categoryId }) {
-  const params = new URLSearchParams({
-    page: String(page),
-    limit: String(limit),
-  });
-
-  if (categoryId) params.set('categoryId', categoryId);
-
-  const res = await fetch(`${API_BASE}/api/animals?${params.toString()}`);
-  if (!res.ok) throw new Error('Animals error');
-  return res.json();
+function hideLoader() {
+  if (loader) loader.classList.add('hidden');
+  document
+    .querySelectorAll('.filter-pet-list-button')
+    .forEach(btn => (btn.disabled = false));
+  if (loadMoreBtn) loadMoreBtn.disabled = false;
 }
-
-const state = {
-  page: 1,
-  limitDesktop: 9,
-  limitMobile: 6,
-  totalPages: 1,
-  categoryId: null,
-  categoriesMap: new Map(),
-  isLoading: false,
-};
-
-const mqWithPagination = window.matchMedia('(min-width: 768px)');
-
-const refs = {
-  section: document.querySelector('.pets-list-section'),
-  list: document.querySelector('.pets-list'),
-  filters: document.querySelector('.filter-pet-list'),
-  filterBtns: document.querySelectorAll('.filter-pet-list-button'),
-  pagination: document.querySelector('.pets-pagination'),
-  loadMore: document.querySelector('.add-more-pets'),
-};
-
-if (refs.section) {
-  init();
-}
-
-async function init() {
-  await loadCategories();
-
-  refs.filters.addEventListener('click', onFilterClick);
-
-  if (refs.pagination) {
-    refs.pagination.addEventListener('click', onPaginationClick);
-  }
-  if (refs.loadMore) {
-    refs.loadMore.addEventListener('click', onLoadMore);
-  }
-
-  mqWithPagination.addEventListener?.('change', async () => {
-    state.page = 1;
-    await loadAndRender({ reset: true });
-  });
-
-  await loadAndRender({ reset: true });
-}
-
-function getLimit() {
-  return mqWithPagination.matches ? state.limitDesktop : state.limitMobile;
-}
-
-async function loadCategories() {
-  const categories = await fetchCategories();
-  categories.forEach(cat => {
-    state.categoriesMap.set(cat.name.trim(), cat._id);
-  });
-}
-
-async function onFilterClick(e) {
-  const btn = e.target.closest('.filter-pet-list-button');
-  if (!btn || state.isLoading) return;
-
-  const name = btn.textContent.trim();
-  state.page = 1;
-
-  state.categoryId =
-    name === 'Всі' ? null : state.categoriesMap.get(name) || null;
-
-  setActiveFilter(btn);
-  await loadAndRender({ reset: true });
-}
-
-async function onPaginationClick(e) {
-  if (!mqWithPagination.matches) return;
-
-  const btn = e.target.closest('button');
-  if (!btn || state.isLoading) return;
-
-  if (btn.dataset.page) {
-    state.page = Number(btn.dataset.page);
-  }
-
-  if (btn.dataset.action === 'prev' && state.page > 1) {
-    state.page -= 1;
-  }
-
-  if (btn.dataset.action === 'next' && state.page < state.totalPages) {
-    state.page += 1;
-  }
-
-  await loadAndRender({ reset: true });
-}
-
-async function onLoadMore() {
-  if (mqWithPagination.matches) return;
-
-  if (state.page >= state.totalPages) return;
-
-  state.page += 1;
-  await loadAndRender({ reset: false });
-}
-
-async function loadAndRender({ reset }) {
+export async function addCategories() {
   try {
-    state.isLoading = true;
-
-    const limit = getLimit();
-    const data = await fetchAnimals({
-      page: state.page,
-      limit,
-      categoryId: state.categoryId,
-    });
-
-    state.totalPages = Math.max(1, Math.ceil(data.totalItems / limit));
-
-    renderCards(data.animals, { append: !reset });
-
-    if (mqWithPagination.matches) {
-      if (refs.pagination) renderPagination();
-      if (refs.loadMore) refs.loadMore.style.display = 'none';
-    } else {
-      if (refs.pagination) refs.pagination.innerHTML = '';
-      if (refs.loadMore) {
-        refs.loadMore.style.display =
-          state.page >= state.totalPages ? 'none' : '';
-      }
+    const response = await fetch(`${API_URL}/categories`);
+    const categories = await response.json();
+    const allButtonMarkup = `
+            <li class="filter-item">
+                <button type="button" class="filter-pet-list-button active" data-id="all">
+                    Всі
+                </button>
+            </li>
+        `;
+    const markup = categories
+      .map(
+        ({ _id, name }) => `
+            <li class="filter-item">
+            <button type="button" class="filter-pet-list-button" data-id="${_id}">
+                ${name}
+            </button>
+            </li>
+        `
+      )
+      .join('');
+    categoriesList.innerHTML = allButtonMarkup + markup;
+  } catch (error) {
+    console.error('Сталася помилка:', error.message);
+  }
+}
+categoriesList.addEventListener('click', async e => {
+  if (e.target.nodeName !== 'BUTTON') return;
+  currentCategory = e.target.dataset.id;
+  currentPage = 1;
+  animalsContainer.innerHTML = '';
+  document
+    .querySelectorAll('.filter-pet-list-button')
+    .forEach(btn => btn.classList.remove('active'));
+  e.target.classList.add('active');
+  await getPets(currentCategory, currentPage);
+});
+loadMoreBtn.addEventListener('click', async () => {
+  currentPage += 1;
+  await getPets(currentCategory, currentPage);
+});
+export async function getPets(categoryId = 'all', page = 1) {
+  showLoader();
+  try {
+    let url = `${API_URL}/animals?page=${page}&limit=${perPage}`;
+    if (categoryId && categoryId !== 'all') {
+      url += `&categoryId=${categoryId}`;
     }
-  } catch (err) {
-    console.error(err);
+    const response = await fetch(url);
+    if (!response.ok) throw new Error('Помилка завантаження');
+    const data = await response.json();
+    renderPets(data.animals);
+    if (page * perPage >= data.totalItems) {
+      loadMoreBtn.classList.add('hidden');
+    } else {
+      loadMoreBtn.classList.remove('hidden');
+    }
+  } catch (error) {
+    console.error(error.message);
   } finally {
-    state.isLoading = false;
+    hideLoader();
   }
 }
-
-function renderCards(animals, { append }) {
-  const markup = animals.map(createCard).join('');
-
-  if (append) {
-    refs.list.insertAdjacentHTML('beforeend', markup);
-  } else {
-    refs.list.innerHTML = markup;
-  }
+export let currentPets = [];
+function renderPets(petsArray = []) {
+  currentPets.push(...petsArray);
+  const markup = petsArray
+    .map(
+      pet => `
+        <li class="pet-card">
+            <img src="${pet.image}" alt="${pet.name}" />
+            <div class="pet-info-box">
+                <p class="pet-species">${pet.species}</p>
+                <h3 class="pet-name">${pet.name}</h3>
+                <ul class="pet-filters">
+                    ${pet.categories
+                      .map(cat => `<li>${cat.name}</li>`)
+                      .join('')}
+                </ul>
+                <ul class="pet-info">
+                    <li>${pet.age}</li>
+                    <li>${pet.gender}</li>
+                </ul>
+            </div>
+            <p class="pet-desc">${pet.shortDescription}</p>
+    <button
+                type="button"
+                class="pet-more-btn"
+                data-id="${pet._id}">
+                Дізнатись більше
+            </button>
+        </li>
+    `
+    )
+    .join('');
+  animalsContainer.insertAdjacentHTML('beforeend', markup);
 }
-
-function createCard(animal) {
-  return `
-    <li class="pet-card">
-      <img src="${animal.image}" alt="${animal.name}" loading="lazy" />
-      <h3>${animal.name}</h3>
-      <p>${animal.species}</p>
-      <p>${animal.age} • ${animal.gender}</p>
-      <p>${animal.shortDescription || ''}</p>
-      <button type="button">Дізнатись більше</button>
-    </li>
-  `;
-}
-
-function renderPagination() {
-  if (!refs.pagination) return;
-
-  if (state.totalPages <= 1) {
-    refs.pagination.innerHTML = '';
-    return;
-  }
-
-  let html = `
-    <button data-action="prev" ${state.page === 1 ? 'disabled' : ''}>←</button>
-  `;
-
-  for (let i = 1; i <= state.totalPages; i += 1) {
-    html += `
-      <button data-page="${i}" ${
-      i === state.page ? 'class="active"' : ''
-    }>${i}</button>
-    `;
-  }
-
-  html += `
-    <button data-action="next" ${
-      state.page === state.totalPages ? 'disabled' : ''
-    }>→</button>
-  `;
-
-  refs.pagination.innerHTML = html;
-}
-
-function setActiveFilter(activeBtn) {
-  refs.filterBtns.forEach(btn => btn.classList.remove('is-active'));
-  activeBtn.classList.add('is-active');
-}
+animalsContainer.addEventListener('click', e => {
+  const btn = e.target.closest('.pet-more-btn');
+  if (!btn) return;
+  const petId = btn.dataset.id;
+  openPetModal(petId);
+});
+export { renderPets };
