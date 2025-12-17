@@ -10,17 +10,10 @@ const API_URL = 'https://paw-hut.b.goit.study/api/feedbacks?limit=10&page=1';
 function createFeedbackCard(feedback) {
     return `
         <div class="swiper-slide">
-            <div class="feedback-card">
+            <div class="feedback-card" id="${feedback.id}">
                 <div>
                     <div class="rating-container">
-                        <select class="star-rating-lib">
-                            <option value="">Select a rating</option>
-                            <option value="5" ${Math.round(feedback.rate) === 5 ? 'selected' : ''}>5</option>
-                            <option value="4" ${Math.round(feedback.rate) === 4 ? 'selected' : ''}>4</option>
-                            <option value="3" ${Math.round(feedback.rate) === 3 ? 'selected' : ''}>3</option>
-                            <option value="2" ${Math.round(feedback.rate) === 2 ? 'selected' : ''}>2</option>
-                            <option value="1" ${Math.round(feedback.rate) === 1 ? 'selected' : ''}>1</option>
-                        </select>
+                    <div class="star-rating-lib" data-rating="${Number(feedback.rate)}"></div>
                     </div>
                     <p class="feedback-text">${feedback.description}</p>
                 </div>
@@ -44,26 +37,26 @@ function initializeFeedbacksAndStars(data) {
     if (!wrapper || !data) return;
 
     wrapper.innerHTML = data.map(createFeedbackCard).join('');
+    initializeSwiper();
+    requestAnimationFrame(() => {
+    new StarRating('.star-rating-lib', {
+        readOnly: true,
+        tooltip: false,
+        clearable: false,
+        stars(el, item) {
+        let iconId = 'icon-star-outline';
 
-    
-    setTimeout(() => {
-        new StarRating('.star-rating-lib', {
-            readOnly: true,
-            tooltip: false,
-            clearable: false,
-            stars: function (el, item, index) {
+        if (item.state === 'full') iconId = 'icon-star-filled';
+        if (item.state === 'half') iconId = 'icon-star-half';
+
         el.innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-                <path d="M16 2.5l4.3 8.7 9.7 1.4-7 6.8 1.7 9.6-8.7-4.6-8.7 4.6 1.7-9.6-7-6.8 9.7-1.4z"/>
-            </svg>`;
-    },
-    
-        });
-        document.querySelectorAll('.star-rating-lib + .star-rating label').forEach(label => {
-            label.style.pointerEvents = 'none';
-        });
-        initializeSwiper();
-    }, 0);
+            <svg width="24" height="24" class="star ${item.state}">
+            <use href="/img/sprite.svg#${iconId}"></use>
+            </svg>
+        `;
+        }
+    });
+});
 }
 
 function initializeSwiper() {
