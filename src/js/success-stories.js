@@ -30,6 +30,15 @@ function createFeedbackCard(feedback) {
     `;
 }
 
+const originalAddEventListener = EventTarget.prototype.addEventListener;
+EventTarget.prototype.addEventListener = function(type, listener, options) {
+    if (type === 'touchmove' && (options === undefined || options === false)) {
+        originalAddEventListener.call(this, type, listener, { passive: true });
+    } else {
+        originalAddEventListener.call(this, type, listener, options);
+    }
+};
+
 function initializeFeedbacksAndStars(data) {
     const wrapper = document.getElementById('feedbacks-wrapper');
     if (!wrapper || !data) return;
@@ -37,7 +46,7 @@ function initializeFeedbacksAndStars(data) {
     wrapper.innerHTML = data.map(createFeedbackCard).join('');
 
     
-   setTimeout(() => {
+    setTimeout(() => {
         new StarRating('.star-rating-lib', {
             readOnly: true,
             tooltip: false,
@@ -49,7 +58,10 @@ function initializeFeedbacksAndStars(data) {
             </svg>`;
     },
     
-});
+        });
+        document.querySelectorAll('.star-rating-lib + .star-rating label').forEach(label => {
+            label.style.pointerEvents = 'none';
+        });
         initializeSwiper();
     }, 0);
 }

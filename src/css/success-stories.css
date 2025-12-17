@@ -7,7 +7,8 @@
     margin-top: 32px;
     display: flex;
     justify-content: flex-start;
-    bottom: 0 !important;
+
+    margin-left: 25px;
 }
 
 .feedbacks-section .swiper-pagination-bullet {
@@ -68,6 +69,10 @@
     font-size: 18px;
     line-height: 1.5;
     color: #02060a;
+}
+
+#stories .swiper-slide::after {
+    background: transparent;
 }
 
 .rating-container{
@@ -231,3 +236,6 @@
     max-width: 500px;
     }
 }
+
+
+
