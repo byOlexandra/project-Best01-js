@@ -1,34 +1,30 @@
 
-<div class="loader " data-loader aria-hidden="true">
-    <div class="spinner" aria-label="Завантаження"></div>
+<div class="toasts" data-toasts>
+
 </div>
 
-
-<div class="toasts" data-toasts></div>
-
-<div class="modal-backdrop " data-animal-modal-backdrop>
+<div class="modal-backdrop is-hidden" data-animal-modal-backdrop data="123">
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="animalModalTitle">
         <button class="modal-close" type="button" aria-label="Закрити" data-animal-modal-close>
             <svg class="btn-close" width="24" height="24">
-                <use href="../img/sprite.svg#icon-close"></use>  
+                <use href="/img/sprite.svg#icon-close"></use>
             </svg>
         </button>
 
         <div class="modal-content">
+
             <div class="modal-left">
 
                 <img class="modal-img" data-animal-img alt="">
-                  
+
             </div>
 
             <div class="modal-right">
-                <h2 id="animalModalTitle" class="modal-title" data-animal-species></h2>
-
-                <p class="modal-row">
+                <p id="animalModalTitle" class="modal-title" data-animal-species></p>
+                <h3 class="modal-row">
                     <span class="modal-label"> </span>
                     <span data-animal-name></span>
-                </p>
-
+                </h3>
                 <p class="modal-row">
                     <span class="modal-label"> </span>
                     <span data-animal-age> </span>
@@ -38,11 +34,12 @@
 
                 <div class="modal-block">
                     <h3 class="modal-subtitle">Опис</h3>
-                    <p class="modal-text" data-animal-description></p>
-                    
-                    <h3 class="modal-subtitle">Здоров'я</h3>
-                    <p class="modal-text" data-animal-health></p>
+                    <p class="modal-text" data-animal-description>
+                    </p>
 
+                    <h3 class="modal-subtitle">Здоров'я</h3>
+                    <p class="modal-text" data-animal-health>
+                    </p>
                     <h3 class="modal-subtitle">Поведінка</h3>
                     <p class="modal-text" data-animal-behavior></p>
                 </div>
@@ -54,4 +51,3 @@
         </div>
     </div>
 </div>
-  
