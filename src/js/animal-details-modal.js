@@ -1,5 +1,4 @@
-
-  import { currentPets } from './pets-list.js';
+import { currentPets } from './pets-list.js';
 const backdrop = document.querySelector('[data-animal-modal-backdrop]');
 const closeBtn = document.querySelector('[data-animal-modal-close]');
 const openFormBtn = backdrop.querySelector('[data-take-home]');
@@ -23,12 +22,14 @@ export function openPetModal(petId) {
     modalSpecies.textContent = pet.species;
     modalDesc.textContent = pet.shortDescription;
     modalHealth.textContent = pet.healthStatus;
-    modalBehaviour.textContent = pet.behaviour;
+    modalBehaviour.textContent = pet.behavior;
     backdrop.classList.remove('is-hidden');
+    document.body.style.overflow = 'hidden';
     setCurrentPetId(pet._id);
 }
 export function closePetModal() {
     backdrop.classList.add('is-hidden');
+    document.body.style.overflow = '';
 }
 backdrop.addEventListener('click', (e) => {
     if (e.target === backdrop || e.target.closest('[data-animal-modal-close]')) {
@@ -42,6 +43,7 @@ export function setCurrentPetId(petId) {
 if (openFormBtn) {
     openFormBtn.addEventListener('click', () => {
         if (!currentPetId) return;
+        closePetModal();
         const event = new CustomEvent('openAdoptionModal', {
             detail: { animalId: currentPetId },
             bubbles: true,
