@@ -1,5 +1,6 @@
 import { currentPets } from './pets-list.js';
 const backdrop = document.querySelector('[data-animal-modal-backdrop]');
+const modal = document.querySelector(".modal");
 const closeBtn = document.querySelector('[data-animal-modal-close]');
 const openFormBtn = backdrop.querySelector('[data-take-home]');
 const modalImage = document.querySelector('[data-animal-img]');
@@ -32,12 +33,13 @@ export function closePetModal() {
     document.body.style.overflow = '';
 }
 backdrop.addEventListener('click', (e) => {
-    if (e.target === backdrop || e.target.closest('[data-animal-modal-close]')) {
+    if (e.target.closest('[data-animal-modal-close]')) {
         closePetModal();
     }
+    if (!modal.contains(e.target)) closePetModal();
 });
 document.body.addEventListener('keydown', (e) => {
-    if(e.key === 'Escape') closePetModal()
+    if (e.key === 'Escape') closePetModal();
 })
 let currentPetId = null;
 export function setCurrentPetId(petId) {
