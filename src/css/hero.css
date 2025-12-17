@@ -7,6 +7,7 @@
     padding: 64px 20px 115px 20px;
     margin: 0 auto;
 }
+
 @media (min-resolution: 192dpi) {
     .hero-section {
         background-image:
@@ -14,6 +15,7 @@
             url(/img/hero/hero-image-mobile@2x-min.jpg);
     }
 }
+
 .hero-title {
     font-size: 40px;
     color: #fff;
@@ -21,10 +23,12 @@
     letter-spacing: -0.01em;
     line-height: 1.2;
 }
+
 .hero-text {
     color: #fff;
     margin-bottom: 32px;
 }
+
 .hero-button {
     border-radius: 8px;
     padding: 12px 24px;
@@ -34,28 +38,33 @@
     color: #fff;
     transition: border 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
 }
+
 .hero-button:disabled {
     border: 1px solid #88765C;
     background: #88765C;
     opacity: 0.3;
     color: #fff;
 }
+
 .hero-button:active {
     border: 1px solid #88765C;
     box-shadow: inset 0 4px 6px -2px rgba(0, 0, 0, 0.03), inset 0 12px 16px -4px rgba(0, 0, 0, 0.08);
     background: #EEE9E3;
     color: #02060A;
 }
+
 .hero-button:hover {
     border: 1px solid #88765C;
     background: #EEE9E3;
     color: #02060A;
 }
+
 .hero-button:focus {
     border: 1px solid #88765C;
     background: #EEE9E3;
     color: #02060A;
 }
+
 @media only screen and (min-width:768px) {
     .hero-section {
         background-image:
@@ -63,6 +72,7 @@
             url(/img/hero/hero-image-tablet.jpg);
         padding: 64px 114px 235px 32px;
     }
+
     @media (min-resolution: 192dpi) {
         .hero-section {
             background-image:
@@ -70,13 +80,16 @@
                 url(/img/hero/hero-image-tablet@2x-min.jpg);
         }
     }
+
     .hero-title {
         font-size: 40px;
     }
+
     .hero-text {
         font-size: 16px;
         width: 512px;
     }
+
     .hero-button {
         width: 171px;
         height: 45px;
@@ -90,19 +103,23 @@
             url(/img/hero/hero-image-desktop.jpg);
         padding: 128px 754px 413px 64px;
     }
+
     @media (min-resolution: 192dpi) {
         .hero-section {
             background-image:
                 linear-gradient(90deg, rgba(0, 0, 0, 0.48) 0%, rgba(255, 255, 255, 0) 100%),
-                url(/img/hero/hero-image-desktop@2x.jpg);
+                url(/img/hero/hero-image-desktop@2x-min.jpg);
         }
     }
+
     .hero-title {
         font-size: 56px;
     }
+
     .hero-text {
         font-size: 18px;
     }
+    
     .hero-button {
         width: 189px;
         height: 48px;
