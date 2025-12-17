@@ -55,14 +55,6 @@ body.scroll-locked {
     position: fixed;
     inset: 0;
     z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 16px;
-    background: var(--overlay-bg);
-    opacity: 1;
-    visibility: visible;
-    transition: opacity 200ms ease, visibility 200ms ease;
 }
 
 .modal-backdrop.is-hidden {
@@ -71,17 +63,46 @@ body.scroll-locked {
     pointer-events: none;
 }
 
+.animal-modal-backdrop {
+    width: 100%;
+    height: 100%;
+    background: rgba(2, 6, 10, 0.25);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px 16px;
+    overflow-y: auto;
+    transition: opacity 250ms ease, visibility 250ms ease;
+} 
+
+.animal-modal-container {
+    display: flex;
+    justify-content: center;
+}
+
+.animal-modal-content {
+    position: relative;
+    width: 100%;
+    display: flex;
+    gap: 16px;
+    max-height: calc(100vh - 48px);
+    overflow-y: auto;
+}
 
 .modal {
     position: relative;
     width: 100%;
-    max-width: 100%;
-    background: var(--modal-bg);
-    color: var(--text-primary);
-    border-radius: var(--radius-modal);
-    box-shadow: var(--shadow-modal);
+    max-width: 800px;
+    background: #f6f4f1;
+    color: #000;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
-    max-height: 640px;
+
+    padding-top: 50px;
 }
 
 /* Контент (SCROLL) */
@@ -92,6 +113,7 @@ body.scroll-locked {
     padding-top: 56px;
     overflow-y: auto;
     max-height: 640px;
+
 }
 
 .modal-close {
@@ -103,18 +125,19 @@ body.scroll-locked {
     position: absolute;
     top: 16px;
     right: 16px;
-    width: 32px;
-    height: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
     background: transparent;
     border: none;
-    border-radius: 50%;
+    border-radius: 35%;
+    padding: 2px;
+    
+    transform: background-color 0.2s ease;
 }
 
 .modal-close:hover {
-    background: rgba(0, 0, 0, 0.06);
+    background-color: rgba(0, 0, 0, 0.06);
 }
 
 .modal-close:active {
@@ -134,7 +157,7 @@ body.scroll-locked {
 
 .modal-img {
     width: 100%;
-    max-width: 100%;
+    max-height: 60vh;
     height: auto;
 
     object-fit: cover;
@@ -149,22 +172,42 @@ body.scroll-locked {
 }
 
 .modal-right .btn {
+    border: 1px solid transparent;
     margin: 16px 0 8px;
     width: 100%;
+    background-color: #88765c;
+    color: white;
+
+    transition: background-color 0.2s ease, color 0.2 ease, border 0.2s ease;
+}
+
+.modal-right .btn:hover,
+.modal-right .btn:focus {
+    background-color: #eee9e3;
+    color: #02060a;
+    border: 1px solid #88765c;
 }
 
 .modal-title {
     margin: 0;
-    font-size: 24px;
+    font-size: 10px;
     line-height: 1.2;
 }
 
-.modal-row {
+.modal-row.name {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
-    font-size: 14px;
-    color: var(--text-muted);
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+    color: #02060a;
+}
+
+.modal-row.info {
+    display: flex;
+    gap: 8px;
+    font-size: 10px;
 }
 
 .modal-label {
@@ -174,6 +217,10 @@ body.scroll-locked {
 
 .modal-block {
     margin-top: 4px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 }
 
 .modal-subtitle {
@@ -204,14 +251,7 @@ body.scroll-locked {
     line-height: 1;
 }
 
-.btn-primary {
-    background: var(--btn-bg);
-    color: var(--btn-text);
-}
 
-.btn-primary:hover {
-    background: var(--btn-bg-hover);
-}
 
 .btn-primary:focus-visible {
     background: var(--btn-bg-focus);
@@ -228,7 +268,6 @@ body.scroll-locked {
     opacity: var(--btn-disabled-opacity);
 }
 
-
 .modal {
     max-width: 343px;
     max-height: 680px;
@@ -236,9 +275,7 @@ body.scroll-locked {
 
 .modal-content {
     padding: 20px;
-    max-height: 680px;
-
-    
+    max-height: 680px;   
 }
 
 .modal-img {
@@ -246,16 +283,13 @@ body.scroll-locked {
     height: 295px;
 }
 
-.modal-title {
-    font-size: 26px;
-}
-
-
 /* Tablet 768 */
 @media (min-width: 768px) {
     .modal {
         max-width: 704px;
         max-height: 720px;
+
+        padding-top: 0;
     }
 
     .modal-content {
@@ -271,7 +305,7 @@ body.scroll-locked {
     }
 
     .modal-title {
-        font-size: 28px;
+        font-size: 12px;
     }
 }
 
