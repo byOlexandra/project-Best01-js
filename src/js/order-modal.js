@@ -50,7 +50,7 @@ function onEscClose(e) {
 }
 
 function onBackdropClick(e) {
-    if (e.target === refs.backdrop) closeModal();
+    if (e.currentTarget === refs.backdrop) closeModal();
 }
 
 function ensureErrorEl(field) {
