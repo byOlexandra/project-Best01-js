@@ -107,6 +107,7 @@ body.scroll-locked {
 
 /* Контент (SCROLL) */
 .modal-content {
+    
     display: grid;
     grid-template-columns: 1fr;
     gap: 16px;
@@ -114,11 +115,6 @@ body.scroll-locked {
     overflow-y: auto;
     max-height: 640px;
 
-}
-
-.modal-close {
-    top: 16px;
-    right: 16px;    
 }
 
 .modal-close {
@@ -301,13 +297,31 @@ body.scroll-locked {
 
     .modal-img {
         width: 304px;
-        height: 450px;
+        min-height: 400px;
+        max-height: 450px;
     }
 
     .modal-title {
         font-size: 12px;
     }
+
+    .modal-row.name {
+        font-size: 32px;
+    }
+
+    .modal-row.info {
+        font-size: 12px;
+    }
+
+    .modal-right > :nth-last-child(2) {
+        order: 2;
+    }
+
+    .modal-right > :last-child {
+        order: 1;
+    }
 }
+
 
 /* Desktop 1440 */
 @media (min-width: 1440px) {
@@ -318,7 +332,8 @@ body.scroll-locked {
 
     .modal-close {
         top: 24px;
-        right: 24px;   }
+        right: 24px;   
+    }
 
     .modal-content {
         grid-template-columns: 576px 1fr;
@@ -329,7 +344,12 @@ body.scroll-locked {
 
     .modal-img {
         width: 576px;
-        height: 450px;
+        max-height: 450px;
     }
+
+        .modal-right> :nth-last-child(2),
+        .modal-right> :last-child {
+            order: 0;
+        }
 }
 
