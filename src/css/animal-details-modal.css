@@ -1,0 +1,300 @@
+/* Загальне */
+:root {
+    /* кольори */
+    --modal-bg: #f6f4f1;
+    --overlay-bg: rgba(0, 0, 0, 0.25);
+
+    --text-primary: #111111;
+    --text-muted: rgba(17, 17, 17, 0.75);
+
+    /* тіні */
+    --shadow-modal: 0 12px 40px rgba(0, 0, 0, 0.2);
+    --btn-shadow-active: inset 0 4px 6px -2px rgba(0, 0, 0, 0.03),
+        inset 0 12px 16px -4px rgba(0, 0, 0, 0.08);
+
+    /* радіуси */
+    --radius-modal: 8px;
+    --radius-img: 8px;
+    --radius-btn: 8px;
+
+    /* фокус */
+    --focus-ring: 0 0 0 3px rgba(17, 17, 17, 0.25);
+
+    /* кнопки */
+    --btn-bg: #88765c;
+    --btn-text: #ffffff;
+    --btn-bg-hover: #eee9e3;
+    --btn-bg-focus: #c3b49d;
+    --btn-bg-active: #c3b49d;
+    --btn-bg-disabled: #88765c;
+    --btn-disabled-opacity: 0.3;
+}
+
+/* база */
+button,
+a,
+[role="button"],
+[data-clickable] {
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: not-allowed;
+}
+
+button {
+    -webkit-tap-highlight-color: transparent;
+}
+
+body.scroll-locked {
+    overflow: hidden;
+}
+
+/* backdrop */
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    background: var(--overlay-bg);
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 200ms ease, visibility 200ms ease;
+}
+
+.modal-backdrop.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+
+.modal {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    background: var(--modal-bg);
+    color: var(--text-primary);
+    border-radius: var(--radius-modal);
+    box-shadow: var(--shadow-modal);
+    overflow: hidden;
+    max-height: 640px;
+}
+
+/* Контент (SCROLL) */
+.modal-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding-top: 56px;
+    overflow-y: auto;
+    max-height: 640px;
+}
+
+.modal-close {
+    top: 16px;
+    right: 16px;    
+}
+
+.modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+}
+
+.modal-close:hover {
+    background: rgba(0, 0, 0, 0.06);
+}
+
+.modal-close:active {
+    transform: scale(0.98);
+}
+
+.modal-close:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+}
+
+/* Зображення */
+.modal-left {
+    display: flex;
+    justify-content: center;
+}
+
+.modal-img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+
+    object-fit: cover;
+    border-radius: var(--radius-img);
+}
+
+/* текст */
+.modal-right {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.modal-right .btn {
+    margin: 16px 0 8px;
+    width: 100%;
+}
+
+.modal-title {
+    margin: 0;
+    font-size: 24px;
+    line-height: 1.2;
+}
+
+.modal-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.modal-label {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.modal-block {
+    margin-top: 4px;
+}
+
+.modal-subtitle {
+    margin: 0 0 8px;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-primary);
+}
+
+.modal-text {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--text-muted);
+}
+
+/* кнопка */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 12px 16px;
+    border: none;
+    border-radius: var(--radius-btn);
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.btn-primary {
+    background: var(--btn-bg);
+    color: var(--btn-text);
+}
+
+.btn-primary:hover {
+    background: var(--btn-bg-hover);
+}
+
+.btn-primary:focus-visible {
+    background: var(--btn-bg-focus);
+    outline: none;
+}
+
+.btn-primary:active {
+    background: var(--btn-bg-active);
+    box-shadow: var(--btn-shadow-active);
+}
+
+.btn-primary:disabled {
+    background: var(--btn-bg-disabled);
+    opacity: var(--btn-disabled-opacity);
+}
+
+/* Mobile adaptive 375 */
+@media (min-width: 375px) {
+    .modal {
+        max-width: 343px;
+        max-height: 680px;
+    }
+
+    .modal-content {
+        padding: 20px;
+        max-height: 680px;
+    }
+
+    .modal-img {
+        width: 295px;
+        height: 295px;
+    }
+
+    .modal-title {
+        font-size: 26px;
+    }
+}
+
+/* Tablet 768 */
+@media (min-width: 768px) {
+    .modal {
+        max-width: 704px;
+        max-height: 720px;
+    }
+
+    .modal-content {
+        grid-template-columns: 304px 1fr;
+        gap: 24px;
+        padding: 24px;
+        max-height: 720px;
+    }
+
+    .modal-img {
+        width: 304px;
+        height: 450px;
+    }
+
+    .modal-title {
+        font-size: 28px;
+    }
+}
+
+/* Desktop 1440 */
+@media (min-width: 1440px) {
+    .modal {
+        max-width: 920px;
+        max-height: 720px;
+    }
+
+    .modal-close {
+        top: 24px;
+        right: 24px;   }
+
+    .modal-content {
+        grid-template-columns: 576px 1fr;
+        gap: 32px;
+        padding: 32px;
+        max-height: 720px;
+    }
+
+    .modal-img {
+        width: 576px;
+        height: 450px;
+    }
+}
+
