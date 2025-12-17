@@ -36,6 +36,9 @@ backdrop.addEventListener('click', (e) => {
         closePetModal();
     }
 });
+document.body.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape') closePetModal()
+})
 let currentPetId = null;
 export function setCurrentPetId(petId) {
     currentPetId = petId;
