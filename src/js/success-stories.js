@@ -1,5 +1,4 @@
-
-import StarRating from 'star-rating.js';
+import Swal from 'sweetalert2';
 import Swiper from 'swiper'; 
 import { Navigation, Pagination } from 'swiper/modules';
 
@@ -8,63 +7,54 @@ import 'star-rating.js/dist/star-rating.css';
 const API_URL = 'https://paw-hut.b.goit.study/api/feedbacks?limit=10&page=1';
 
 function createFeedbackCard(feedback) {
+    const rating = feedback.rate;
+    let starsHtml = '';
+    for (let i = 1; i <= 5; i++) {
+        if (i <= rating) {
+        starsHtml += `
+            <svg class="star-icon filled">
+            <use href="./img/sprite.svg#icon-star-filled"></use>
+            </svg>`;
+        } else if (i - 0.5 <= rating) {
+        starsHtml += `
+            <div class="star-half-wrapper">
+            <svg class="star-icon outline">
+                <use href="/img/sprite.svg#icon-star-outline"></use>
+            </svg>
+            <svg class="star-icon filled half-overlay">
+                <use href="/img/sprite.svg#icon-star-filled"></use>
+            </svg>
+            </div>`;
+        } else {
+        starsHtml += `
+            <svg class="star-icon outline">
+            <use href="/img/sprite.svg#icon-star-outline"></use>
+            </svg>`;
+        }
+    }
+
     return `
         <div class="swiper-slide">
-            <div class="feedback-card">
-                <div>
-                    <div class="rating-container">
-                        <select class="star-rating-lib">
-                            <option value="">Select a rating</option>
-                            <option value="5" ${Math.round(feedback.rate) === 5 ? 'selected' : ''}>5</option>
-                            <option value="4" ${Math.round(feedback.rate) === 4 ? 'selected' : ''}>4</option>
-                            <option value="3" ${Math.round(feedback.rate) === 3 ? 'selected' : ''}>3</option>
-                            <option value="2" ${Math.round(feedback.rate) === 2 ? 'selected' : ''}>2</option>
-                            <option value="1" ${Math.round(feedback.rate) === 1 ? 'selected' : ''}>1</option>
-                        </select>
-                    </div>
-                    <p class="feedback-text">${feedback.description}</p>
-                </div>
-                <p class="feedback-author">${feedback.author}</p>
+        <div class="feedback-card">
+            <div class="rating-container">
+            <div class="stars-wrapper">${starsHtml}</div>
             </div>
+            <p class="feedback-text">${feedback.description}</p>
+            <p class="feedback-author">${feedback.author}</p>
+        </div>
         </div>
     `;
 }
 
-const originalAddEventListener = EventTarget.prototype.addEventListener;
-EventTarget.prototype.addEventListener = function(type, listener, options) {
-    if (type === 'touchmove' && (options === undefined || options === false)) {
-        originalAddEventListener.call(this, type, listener, { passive: true });
-    } else {
-        originalAddEventListener.call(this, type, listener, options);
-    }
-};
-
 function initializeFeedbacksAndStars(data) {
     const wrapper = document.getElementById('feedbacks-wrapper');
-    if (!wrapper || !data) return;
+    if (!wrapper || !data?.length) return;
 
     wrapper.innerHTML = data.map(createFeedbackCard).join('');
 
-    
-    setTimeout(() => {
-        new StarRating('.star-rating-lib', {
-            readOnly: true,
-            tooltip: false,
-            clearable: false,
-            stars: function (el, item, index) {
-        el.innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-                <path d="M16 2.5l4.3 8.7 9.7 1.4-7 6.8 1.7 9.6-8.7-4.6-8.7 4.6 1.7-9.6-7-6.8 9.7-1.4z"/>
-            </svg>`;
-    },
-    
-        });
-        document.querySelectorAll('.star-rating-lib + .star-rating label').forEach(label => {
-            label.style.pointerEvents = 'none';
-        });
-        initializeSwiper();
-    }, 0);
+    initializeSwiper();
 }
+
 
 function initializeSwiper() {
     return new Swiper('.feedbacks-slider', {
@@ -96,12 +86,14 @@ export async function initSuccessStories() {
 
     try {
         const response = await fetch(API_URL);
-        const apiResponse = await response.json();
-        const feedbackData = apiResponse.feedbacks;
-    
-        initializeFeedbacksAndStars(feedbackData);
-        
+        const { feedbacks } = await response.json();
+
+        initializeFeedbacksAndStars(feedbacks);
     } catch (error) {
-        console.error("Error loading reviews:", error);
+        Swal.fire({
+        icon: 'error',
+        title: 'Помилка завантаження',
+        text: 'Не вдалося завантажити відгуки. Спробуйте пізніше.',
+        });
     }
 }
