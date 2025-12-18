@@ -1,6 +1,9 @@
 import Swal from 'sweetalert2';
 import Swiper from 'swiper'; 
 import { Navigation, Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 import 'star-rating.js/dist/star-rating.css';
 
@@ -13,7 +16,7 @@ function createFeedbackCard(feedback) {
         if (i <= rating) {
         starsHtml += `
             <svg class="star-icon filled">
-            <use href="./img/sprite.svg#icon-star-filled"></use>
+            <use href="/img/sprite.svg#icon-star-filled"></use>
             </svg>`;
         } else if (i - 0.5 <= rating) {
         starsHtml += `
@@ -55,29 +58,65 @@ function initializeFeedbacksAndStars(data) {
     initializeSwiper();
 }
 
-
 function initializeSwiper() {
-    return new Swiper('.feedbacks-slider', {
+    const sliderContainer = document.querySelector('.feedbacks-section .feedbacks-slider');
+    if (!sliderContainer) return;
+
+    const btnNext = sliderContainer.querySelector('.swiper-button-next');
+    const btnPrev = sliderContainer.querySelector('.swiper-button-prev');
+
+    const swiper = new Swiper(sliderContainer, {
         modules: [Navigation, Pagination], 
         slidesPerView: 1,
+        slidesPerGroup: 1,
         spaceBetween: 24,
-        grabCursor: true, 
-        breakpoints: {
-            320: { slidesPerView: 1, spaceBetween: 16 },
-            768: { slidesPerView: 2, spaceBetween: 24 },
-            1280: { slidesPerView: 2, spaceBetween: 24 }
-        },
+        grabCursor: true,
         pagination: {
-            el: '.swiper-pagination',
+            el: sliderContainer.querySelector('.swiper-pagination'),
             clickable: true,
         },
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
+        breakpoints: {
+            320: { slidesPerView: 1, slidesPerGroup: 1 },
+            768: { slidesPerView: 2, slidesPerGroup: 1 },
+            1280: { slidesPerView: 2, slidesPerGroup: 1 }
         },
-        observer: true, 
-        observeParents: true,
+        // Додаємо стеження за змінами, щоб кнопки оновлювались самі
+        on: {
+            init: function() { toggleButtons(this); },
+            slideChange: function() { toggleButtons(this); }
+        }
     });
+
+    // Функція, яка вмикає/вимикає кнопки
+    function toggleButtons(s) {
+        if (!btnNext || !btnPrev) return;
+        
+        // Кнопка "Назад"
+        btnPrev.disabled = s.isBeginning;
+        btnPrev.classList.toggle('swiper-button-disabled', s.isBeginning);
+        
+        // Кнопка "Вперед"
+        btnNext.disabled = s.isEnd;
+        btnNext.classList.toggle('swiper-button-disabled', s.isEnd);
+    }
+
+    if (btnNext) {
+        btnNext.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            swiper.slideNext();
+        });
+    }
+
+    if (btnPrev) {
+        btnPrev.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            swiper.slidePrev();
+        });
+    }
+
+    return swiper;
 }
 
 export async function initSuccessStories() {
