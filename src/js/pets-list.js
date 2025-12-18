@@ -123,7 +123,7 @@ function renderPets(petsArray = []) {
     .map(
       pet => `
         <li class="pet-card">
-            <img src="${pet.image}" alt="${pet.name}" />
+            <img src="${pet.image}" alt="${pet.name}" loading="lazy" />
             <div class="pet-info-box">
                 <p class="pet-species">${pet.species}</p>
                 <h3 class="pet-name">${pet.name}</h3>
