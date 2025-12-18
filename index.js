@@ -38,14 +38,14 @@ import{A as _,S as l,a as E,N as C,P as $}from"./assets/vendor-DWbx0qBT.js";(fun
             </svg>`:s-.5<=t?n+=`
             <div class="star-half-wrapper">
             <svg class="star-icon outline">
-                <use href="/img/sprite.svg#icon-star-outline"></use>
+                <use href="../img/sprite.svg#icon-star-outline"></use>
             </svg>
             <svg class="star-icon filled half-overlay">
-                <use href="/img/sprite.svg#icon-star-filled"></use>
+                <use href="../img/sprite.svg#icon-star-filled"></use>
             </svg>
             </div>`:n+=`
             <svg class="star-icon outline">
-            <use href="/img/sprite.svg#icon-star-outline"></use>
+            <use href="../img/sprite.svg#icon-star-outline"></use>
             </svg>`;return`
         <div class="swiper-slide">
         <div class="feedback-card">
