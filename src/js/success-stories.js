@@ -5,6 +5,8 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
+import mySprite from '../img/sprite.svg';
+
 const API_URL = 'https://paw-hut.b.goit.study/api/feedbacks?limit=10&page=1';
 
 function createFeedbackCard(feedback) {
@@ -14,23 +16,23 @@ function createFeedbackCard(feedback) {
         if (i <= rating) {
         starsHtml += `
             <svg class="star-icon filled">
-            <use href="/img/sprite.svg#icon-star-filled"></use>
+            <use href="${mySprite}#icon-star-filled"></use>
             </svg>`;
         } else if (i - 0.5 <= rating) {
         starsHtml += `
             <div class="star-half-wrapper">
             <svg class="star-icon outline">
-                <use href="../img/sprite.svg#icon-star-outline"></use>
+                <use href="${mySprite}#icon-star-outline"></use>
             </svg>
             <svg class="star-icon filled half-overlay">
-                <use href="../img/sprite.svg#icon-star-filled"></use>
+                <use href="${mySprite}#icon-star-filled"></use>
             </svg>
             </div>`;
             
         } else {
         starsHtml += `
             <svg class="star-icon outline">
-            <use href="../img/sprite.svg#icon-star-outline"></use>
+            <use href="${mySprite}#icon-star-outline"></use>
             </svg>`;
         }
     }
