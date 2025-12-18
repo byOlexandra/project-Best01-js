@@ -1,3 +1,10 @@
+:root {
+    --gl-star-color: black;
+    --gl-star-color-inactive: #dcdce6;
+    --gl-star-size: 24px;
+
+}
+
 .feedbacks-section{
     padding: 64px 0;
 }
@@ -84,34 +91,6 @@
     gap: 4px;
 }
 
-.rating-container .gl-star-rating--stars>span svg {
-    fill: #02060a;
-    transition: fill 0.3s;
-    width: 20px;
-    height: 19px;
-}
-
-.rating-container .gl-star-rating--stars>span svg{
-    fill: none;
-    stroke: #02060a;
-    stroke-width: 2px;
-}
-
-.rating-container .gl-star-rating--stars>span.gl-active svg,
-.rating-container .gl-star-rating--stars>span.gl-selected svg {
-    fill: #02060a;
-    stroke: none;
-}
-
-.rating-container .gl-star-rating--stars > span {
-    opacity: 1 !important;
-}
-
-
-.rating-container .gl-star-rating--stars>span.gl-active,
-.rating-container .gl-star-rating--stars>span.gl-selected {
-    opacity: 1;
-}
 
 .feedback-card{
     display: flex;
@@ -170,32 +149,14 @@
     height: 48px;
     margin: 0;
     padding: 12px;
-    background-color: var(--button-bg-color);
     border: 1px solid #c3b49d;
     cursor: pointer;
     transition: background-color 0.3s, opacity 0.3s;
     border-radius: 8px;
     background-color: #eee9e3;
+    color: #02060a;
 }
 
-#stories .swiper-button-prev svg,
-#stories .swiper-button-next svg {
-    fill: #02060a;
-    stroke: #02060a;
-    width: 24px;
-    height: 24px;
-    transition: transform 0.3s ease;
-}
-
-#stories .swiper-button-prev:hover,
-#stories .swiper-button-next:hover{
-    border: 1px solid rgba(2, 6, 10, 0.6);
-}
-
-#stories .swiper-button-prev:hover svg,
-#stories .swiper-button-next:hover svg {
-    transform: scale(1.1);
-}
 
 #stories .swiper-button-prev:active,
 #stories .swiper-button-next:active{
@@ -237,5 +198,42 @@
     }
 }
 
+.stars-wrapper {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.star-icon {
+    width: 16px;
+    height: 16px;
+    display: block;
+}
+
+.star-icon.filled {
+    fill: #02060a;
+}
+
+.star-icon.outline {
+    fill: transparent;
+    stroke: #02060a;
+    stroke-width: 2px;
+}
+
+.star-half-wrapper {
+    position: relative;
+    width: 16px;
+    height: 16px;
+}
+
+.half-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    clip-path: inset(0 50% 0 0);
+}
+    
 
 

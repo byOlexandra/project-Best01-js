@@ -7,7 +7,6 @@ import { addCategories, getPets, renderPets } from './js/pets-list.js';
 import { initSuccessStories } from './js/success-stories.js';
 initSuccessStories();
 
-
 document.addEventListener('DOMContentLoaded', () => {
     openModal();
     closeModal();

@@ -1,5 +1,4 @@
-
-import StarRating from 'star-rating.js';
+import Swal from 'sweetalert2';
 import Swiper from 'swiper'; 
 import { Navigation, Pagination } from 'swiper/modules';
 
@@ -8,56 +7,54 @@ import 'star-rating.js/dist/star-rating.css';
 const API_URL = 'https://paw-hut.b.goit.study/api/feedbacks?limit=10&page=1';
 
 function createFeedbackCard(feedback) {
+    const rating = feedback.rate;
+    let starsHtml = '';
+    for (let i = 1; i <= 5; i++) {
+        if (i <= rating) {
+        starsHtml += `
+            <svg class="star-icon filled">
+            <use href="./img/sprite.svg#icon-star-filled"></use>
+            </svg>`;
+        } else if (i - 0.5 <= rating) {
+        starsHtml += `
+            <div class="star-half-wrapper">
+            <svg class="star-icon outline">
+                <use href="/img/sprite.svg#icon-star-outline"></use>
+            </svg>
+            <svg class="star-icon filled half-overlay">
+                <use href="/img/sprite.svg#icon-star-filled"></use>
+            </svg>
+            </div>`;
+        } else {
+        starsHtml += `
+            <svg class="star-icon outline">
+            <use href="/img/sprite.svg#icon-star-outline"></use>
+            </svg>`;
+        }
+    }
+
     return `
         <div class="swiper-slide">
-            <div class="feedback-card" id="${feedback.id}">
-                <div>
-                    <div class="rating-container">
-                    <div class="star-rating-lib" data-rating="${Number(feedback.rate)}"></div>
-                    </div>
-                    <p class="feedback-text">${feedback.description}</p>
-                </div>
-                <p class="feedback-author">${feedback.author}</p>
+        <div class="feedback-card">
+            <div class="rating-container">
+            <div class="stars-wrapper">${starsHtml}</div>
             </div>
+            <p class="feedback-text">${feedback.description}</p>
+            <p class="feedback-author">${feedback.author}</p>
+        </div>
         </div>
     `;
 }
 
-const originalAddEventListener = EventTarget.prototype.addEventListener;
-EventTarget.prototype.addEventListener = function(type, listener, options) {
-    if (type === 'touchmove' && (options === undefined || options === false)) {
-        originalAddEventListener.call(this, type, listener, { passive: true });
-    } else {
-        originalAddEventListener.call(this, type, listener, options);
-    }
-};
-
 function initializeFeedbacksAndStars(data) {
     const wrapper = document.getElementById('feedbacks-wrapper');
-    if (!wrapper || !data) return;
+    if (!wrapper || !data?.length) return;
 
     wrapper.innerHTML = data.map(createFeedbackCard).join('');
+
     initializeSwiper();
-    requestAnimationFrame(() => {
-    new StarRating('.star-rating-lib', {
-        readOnly: true,
-        tooltip: false,
-        clearable: false,
-        stars(el, item) {
-        let iconId = 'icon-star-outline';
-
-        if (item.state === 'full') iconId = 'icon-star-filled';
-        if (item.state === 'half') iconId = 'icon-star-half';
-
-        el.innerHTML = `
-            <svg width="24" height="24" class="star ${item.state}">
-            <use href="/img/sprite.svg#${iconId}"></use>
-            </svg>
-        `;
-        }
-    });
-});
 }
+
 
 function initializeSwiper() {
     return new Swiper('.feedbacks-slider', {
@@ -89,12 +86,14 @@ export async function initSuccessStories() {
 
     try {
         const response = await fetch(API_URL);
-        const apiResponse = await response.json();
-        const feedbackData = apiResponse.feedbacks;
-    
-        initializeFeedbacksAndStars(feedbackData);
-        
+        const { feedbacks } = await response.json();
+
+        initializeFeedbacksAndStars(feedbacks);
     } catch (error) {
-        console.error("Error loading reviews:", error);
+        Swal.fire({
+        icon: 'error',
+        title: 'Помилка завантаження',
+        text: 'Не вдалося завантажити відгуки. Спробуйте пізніше.',
+        });
     }
 }
