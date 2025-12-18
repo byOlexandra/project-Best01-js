@@ -19,11 +19,12 @@
     font-size: 14px;
 }
 
-.FAQ-section {
+.FAQ-container {
     display: flex;
     flex-direction: column;
     gap: 40px;
-    margin: 64px 0;
+    padding-top: 64px;
+    padding-bottom: 64px;
 }
 
 /* Заголовок */
@@ -108,8 +109,10 @@
 
 /* Styles for Tablet devices */
 @media only screen and (min-width: 768px) {
-    .FAQ-section {
+    .FAQ-container {
         gap: 80px;
+        padding-top: 80px;
+        padding-bottom: 80px;
     }
 }
 

@@ -44,6 +44,7 @@ export async function addCategories() {
             </li>
         `;
     const markup = categories
+      .toSorted((a, b) => a._id.localeCompare(b._id))
       .map(
         ({ _id, name }) => `
             <li class="filter-item">
