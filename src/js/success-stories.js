@@ -20,16 +20,16 @@ function createFeedbackCard(feedback) {
         starsHtml += `
             <div class="star-half-wrapper">
             <svg class="star-icon outline">
-                <use href="/img/sprite.svg#icon-star-outline"></use>
+                <use href="../img/sprite.svg#icon-star-outline"></use>
             </svg>
             <svg class="star-icon filled half-overlay">
-                <use href="/img/sprite.svg#icon-star-filled"></use>
+                <use href="../img/sprite.svg#icon-star-filled"></use>
             </svg>
             </div>`;
         } else {
         starsHtml += `
             <svg class="star-icon outline">
-            <use href="/img/sprite.svg#icon-star-outline"></use>
+            <use href="../img/sprite.svg#icon-star-outline"></use>
             </svg>`;
         }
     }
