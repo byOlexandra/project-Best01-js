@@ -60,7 +60,7 @@
 }
 
 .feedbacks-slider {
-    overflow: hidden !important;
+    overflow: hidden;
     width: 100%;
     position: relative;
     display: block;
@@ -115,12 +115,11 @@
 
 .swiper-slide{
     flex-shrink: 0;
-    width: 100%;
     height: auto;
 }
 
 .swiper-wrapper {
-    display: flex !important;
+    box-sizing: content-box;
 }
 
 #stories .slider-navigation{
@@ -230,10 +229,13 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 100%;    
     height: 100%;
     clip-path: inset(0 50% 0 0);
 }
     
-
+#stories .swiper-button-prev svg,
+#stories .swiper-button-next svg {
+    pointer-events: none;
+}
 
