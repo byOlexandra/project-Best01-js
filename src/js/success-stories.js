@@ -5,8 +5,6 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-import 'star-rating.js/dist/star-rating.css';
-
 const API_URL = 'https://paw-hut.b.goit.study/api/feedbacks?limit=10&page=1';
 
 function createFeedbackCard(feedback) {
@@ -80,22 +78,19 @@ function initializeSwiper() {
             768: { slidesPerView: 2, slidesPerGroup: 1 },
             1280: { slidesPerView: 2, slidesPerGroup: 1 }
         },
-        // Додаємо стеження за змінами, щоб кнопки оновлювались самі
+        
         on: {
             init: function() { toggleButtons(this); },
             slideChange: function() { toggleButtons(this); }
         }
     });
 
-    // Функція, яка вмикає/вимикає кнопки
     function toggleButtons(s) {
         if (!btnNext || !btnPrev) return;
         
-        // Кнопка "Назад"
         btnPrev.disabled = s.isBeginning;
         btnPrev.classList.toggle('swiper-button-disabled', s.isBeginning);
         
-        // Кнопка "Вперед"
         btnNext.disabled = s.isEnd;
         btnNext.classList.toggle('swiper-button-disabled', s.isEnd);
     }
