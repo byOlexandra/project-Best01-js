@@ -26,6 +26,7 @@ function createFeedbackCard(feedback) {
                 <use href="../img/sprite.svg#icon-star-filled"></use>
             </svg>
             </div>`;
+            
         } else {
         starsHtml += `
             <svg class="star-icon outline">
