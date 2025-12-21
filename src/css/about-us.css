@@ -1,4 +1,4 @@
-  #about {
+#about {
     padding-top: 64px;
     padding-bottom: 64px;
 }
@@ -10,7 +10,19 @@
 .swiper-slide {
     position: relative;
     margin-bottom: 24px;
+    width: 335px;
+    height: 402px;
+
+    box-sizing: border-box
 }
+
+#about .swiper-wrapper {
+    height: auto;
+    display: flex;
+
+    align-items: flex-start;
+}
+
 .swiper-slide::after {
     content: '';
     position: absolute;
@@ -83,14 +95,45 @@
     fill: #02060A;
     stroke: #02060A;
 }
+
+.swiper-slide picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+
+    aspect-ratio: 335 / 402;
+}
+
 @media only screen and (min-width: 768px) {
     #about .about-container {
-            position: relative;
-        }
+        position: relative;
+    }
+
+    .swiper-slide {
+        width: 704px;
+        height: 404.5px;
+        overflow: hidden;
+    }
+
+    .swiper-slide picture img {
+        aspect-ratio: 704 / 404.5;
+    }
+    
+    #about picture {
+        width: 704px;
+    }
     #about .swiper {
         position: static;
         overflow: hidden;
     }
+
+    .swiper-slide {
+        width: 704px;
+
+        object-fit: cover;
+    }
+
     .swiper-content p {
         width: 548px;
         left: 32px;
@@ -129,6 +172,16 @@
     #about .swiper-button-prev {
         left: 36px;
     }
+
+    .swiper-slide {
+        width: 1312px;
+        height: 753px;
+    }
+
+        .swiper-slide picture img {
+            aspect-ratio: 1312 / 753;
+        }
+    
     #about .swiper-button-next {
         right: 36px;
     }

@@ -10,11 +10,17 @@ export function initSwiper() {
     const prevBtn = document.querySelector(".swiper-button-prev");
     const nextBtn = document.querySelector(".swiper-button-next");
     const swiper = new Swiper (swiperEl, {
-        slidesPerView: 1,
+        slidesPerView: 'auto',
+        centeredSlides: true,
+        autoHeight: false,
         loop: false,
         speed: 600,
         grabCursor: true,
         allowTouchMove: true,
+        observer: true,
+        observeParents: true,
+        watchSlidesProgress: true,
+        updateOnImagesReady: true,
         navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
@@ -25,6 +31,17 @@ export function initSwiper() {
             clickable: true,
             dynamicBullets: true,
             dynamicMainBullets: 1,
+        },
+        on: {
+            // Примусове оновлення через частку секунди після старту
+            init: function () {
+                setTimeout(() => {
+                    this.update();
+                }, 300);
+            }
         }
     })
+    window.addEventListener('load', () => {
+        swiper.update();
+    });    
 }
