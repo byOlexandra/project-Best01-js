@@ -5,15 +5,25 @@ import { initMobileMenu } from './js/mobile-menu.js';
 import { initSwiper } from './js/about-us.js';
 import { addCategories, getPets, renderPets } from './js/pets-list.js';
 import { initSuccessStories } from './js/success-stories.js';
-initSuccessStories();
 import updateCopyrightYear from './js/footer.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-    openModal();
-    closeModal();
+    // Технічні скрипти
+    updateCopyrightYear();
+    if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+    }
+
+    // UI компоненти    
+    initSuccessStories();
     initMobileMenu();
     initSwiper();
 
+    // Модальні вікна
+    openModal();
+    closeModal();
+    
+    // Дані
     addCategories();
     getPets('all', 1);
 
@@ -22,10 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(res => res.json())
         .then(data => renderPets(data.pets))
         .catch(err => console.error(err));
-    
-    updateCopyrightYear()
 });
 
-if ('scrollRestoration' in history) {
-    history.scrollRestoration = 'manual';
-}
+
