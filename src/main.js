@@ -6,6 +6,7 @@ import { initSwiper } from './js/about-us.js';
 import { addCategories, getPets, renderPets } from './js/pets-list.js';
 import { initSuccessStories } from './js/success-stories.js';
 initSuccessStories();
+import updateCopyrightYear from './js/footer.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     openModal();
@@ -21,6 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(res => res.json())
         .then(data => renderPets(data.pets))
         .catch(err => console.error(err));
+    
+    updateCopyrightYear()
 });
 
 if ('scrollRestoration' in history) {
